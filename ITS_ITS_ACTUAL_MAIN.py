@@ -2,8 +2,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from PyQt5.QtWidgets import (QApplication,QMainWindow,QWidget,QVBoxLayout,QHBoxLayout,QFormLayout,QSpinBox,QDoubleSpinBox,
-QComboBox,QPushButton,QSlider,QLabel)
+from PyQt5.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QWidget,
+    QVBoxLayout,
+    QFormLayout,
+    QSpinBox,
+    QDoubleSpinBox,
+    QComboBox,
+    QPushButton,
+    QSlider,
+    QLabel,
+)
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 import sys
@@ -12,14 +23,17 @@ class HeatMapWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Beamforming Simulator")
-        self.setGeometry(100, 100, 1200, 800)
+        self.setGeometry(100, 100, 1800, 1200)
+        self.setWindowIcon(QIcon("antenna_icon.png"))  # Replace with the actual path to your icon file
 
         # Initialize default values
-        self.num_antennas = 8
-        self.distance_m = 2  # Distance in meters
-        self.delay_deg = 0  # Delay in degrees
-        self.frequency = 100  # Default: 100 Hz
-        self.propagation_speed = 100  # Default: Speed of light in m/s
+        self.num_antennas = 2
+        self.distance_m = 1  # Distance in meters
+        self.delay_deg = 10  # Delay in degrees
+        self.frequency = 99.99  # Default: 100 Hz
+        self.propagation_speed = 99.99  # Default: Speed of light in m/s
+        self.wave_type = "Isotropic"
+        self.profile_orientation = "Horizontal"  # Default profile orientation
         self.array_geometry = "Linear"  # Default array geometry
         self.curvature = 0.0  # Default curvature for curved array
 
@@ -29,13 +43,17 @@ class HeatMapWindow(QMainWindow):
         # Central widget for the window
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
-        layout = QHBoxLayout(central_widget)
+        layout = QVBoxLayout(central_widget)
 
         # Create the Matplotlib figures and canvases
         self.heatmap_fig = Figure()
         self.heatmap_canvas = FigureCanvas(self.heatmap_fig)
         self.profile_fig = Figure()
         self.profile_canvas = FigureCanvas(self.profile_fig)
+
+        # Add canvases to the layout
+        layout.addWidget(self.heatmap_canvas)
+        layout.addWidget(self.profile_canvas)
 
         # Form layout for inputs
         form_layout = QFormLayout()
@@ -56,16 +74,21 @@ class HeatMapWindow(QMainWindow):
         self.num_antennas_slider.valueChanged.connect(
             lambda value: self.num_antennas_label.setText(f"{value}")
         )
-        # self.num_antennas_slider.valueChanged.connect(self.update_param_limits)
 
         # Add slider and label to the form layout
         form_layout.addRow("Number of Antennas:", self.num_antennas_slider)
         form_layout.addRow("Selected Antennas:", self.num_antennas_label)
 
+        # self.num_antennas_spinbox = QSpinBox()
+        # self.num_antennas_spinbox.setMinimum(1)
+        # self.num_antennas_spinbox.setMaximum(10)
+        # self.num_antennas_spinbox.setValue(self.num_antennas)
+        # form_layout.addRow("Number of Antennas:", self.num_antennas_spinbox)
+
         # Distance between antennas
         self.distance_slider = QSlider(Qt.Horizontal)  # Horizontal slider
-        self.distance_slider.setMinimum(0)
-        self.distance_slider.setMaximum(4)
+        self.distance_slider.setMinimum(1)
+        self.distance_slider.setMaximum(10)
         self.distance_slider.setValue(self.distance_m)  # Set default value
         self.distance_slider.setTickInterval(1)  # Set tick intervals
         self.distance_slider.setTickPosition(QSlider.TicksBelow)  # Show ticks below the slider
@@ -78,18 +101,24 @@ class HeatMapWindow(QMainWindow):
         self.distance_slider.valueChanged.connect(
             lambda value: self.distance_label.setText(f"{value}")
         )
-        # self.distance_slider.valueChanged.connect(self.update_param_limits)
 
         # Add slider and label to the form layout
         form_layout.addRow("Distance between antennas (m):", self.distance_slider)
         form_layout.addRow("Distance (m):", self.distance_label)
 
+        # self.distance_spinbox = QDoubleSpinBox()
+        # self.distance_spinbox.setDecimals(2)
+        # self.distance_spinbox.setMinimum(0)
+        # self.distance_spinbox.setMaximum(10)
+        # self.distance_spinbox.setValue(self.distance_m)
+        # form_layout.addRow("Distance between antennas (in meters):", self.distance_spinbox)
+
         # Delay between antennas
         self.delay_slider = QSlider(Qt.Horizontal)  # Horizontal slider
-        self.delay_slider.setMinimum(-180)
+        self.delay_slider.setMinimum(0)
         self.delay_slider.setMaximum(180)
         self.delay_slider.setValue(self.delay_deg)  # Set default value
-        self.delay_slider.setTickInterval(5)  # Set tick intervals
+        self.delay_slider.setTickInterval(1)  # Set tick intervals
         self.delay_slider.setTickPosition(QSlider.TicksBelow)  # Show ticks below the slider
 
         # Label to display the current value of the slider
@@ -100,19 +129,39 @@ class HeatMapWindow(QMainWindow):
         self.delay_slider.valueChanged.connect(
             lambda value: self.delay_label.setText(f"{value}")
         )
-        self.delay_slider.valueChanged.connect(self.generate_heatmap_and_profile)  # Update heatmap and profile dynamically
 
         # Add slider and label to the form layout
         form_layout.addRow("Delay between antennas (in degrees):", self.delay_slider)
         form_layout.addRow("Degrees:", self.delay_label)
 
+        # self.delay_spinbox = QDoubleSpinBox()
+        # self.delay_spinbox.setDecimals(3)
+        # self.delay_spinbox.setValue(self.delay_deg)
+        # form_layout.addRow("Delay between antennas (in degrees):", self.delay_spinbox)
+
         # Frequency of the wave
         self.frequency_spinbox = QDoubleSpinBox()
-        # self.frequency_spinbox.setDecimals(2)
-        self.frequency_spinbox.setSingleStep(1)
+        self.frequency_spinbox.setDecimals(2)
+        self.frequency_spinbox.setSingleStep(1.0)
         self.frequency_spinbox.setValue(self.frequency)
         self.frequency_spinbox.setMaximum(1e12)  # Large max value
         form_layout.addRow("Signal Frequency (Hz):", self.frequency_spinbox)
+
+        # Propagation speed
+        self.speed_spinbox = QDoubleSpinBox()
+        self.speed_spinbox.setDecimals(2)
+        self.speed_spinbox.setValue(self.propagation_speed)
+        form_layout.addRow("Propagation Speed (m/s):", self.speed_spinbox)
+
+        # Wave equation type
+        self.wave_type_combo = QComboBox()
+        self.wave_type_combo.addItems(["Isotropic", "Sinc", "Gaussian", "Cosine"])
+        form_layout.addRow("Wave Type:", self.wave_type_combo)
+
+        # Beam Profile orientation (Horizontal or Vertical)
+        self.profile_orientation_combo = QComboBox()
+        self.profile_orientation_combo.addItems(["Horizontal", "Vertical"])
+        form_layout.addRow("Beam Profile Orientation:", self.profile_orientation_combo)
 
         # Array geometry type (Linear or Curved)
         self.array_geometry_combo = QComboBox()
@@ -128,7 +177,6 @@ class HeatMapWindow(QMainWindow):
         self.curvature_slider.setValue(0)
         self.curvature_slider.setTickInterval(10)
         self.curvature_slider.valueChanged.connect(self.update_curvature)
-        # self.curvature_slider.valueChanged.connect(self.update_param_limits)
         self.curvature_slider.setDisabled(True)
         form_layout.addRow(self.curvature_slider_label, self.curvature_slider)
 
@@ -139,41 +187,8 @@ class HeatMapWindow(QMainWindow):
 
         layout.addLayout(form_layout)
 
-        # Add canvases to the layout
-        canvases_layout = QVBoxLayout(central_widget)
-        canvases_layout.addWidget(self.heatmap_canvas)
-        canvases_layout.addWidget(self.profile_canvas)
-
-        layout.addLayout(canvases_layout)
-
-        # Initialize parameter limitsz - this line is unnecessary
-        # self.update_param_limits()
-
         # Generate initial heatmap and beam profile
         self.generate_heatmap_and_profile()
-    '''
-    def update_param_limits(self):
-        # Retrieve current slider values
-        num_antennas = self.num_antennas_slider.value()
-        max_extent = 10  # Heatmap limits: -10 to 10
-
-        # Update maximum distance between antennas
-        max_distance = 2 * max_extent / (num_antennas - 1) if num_antennas > 1 else max_extent
-        self.distance_slider.setMaximum(int(max_distance))
-        if self.distance_slider.value() > max_distance:
-            self.distance_slider.setValue(int(max_distance))
-
-        # Update maximum curvature for the curved array
-        distance_m = self.distance_slider.value()
-        if distance_m > 0:
-            max_curvature = max_extent / ((num_antennas - 1) * (distance_m / 2) ** 2) if num_antennas > 1 else 0
-            max_curvature = min(max_curvature, 100)  # Cap at 100 for practicality
-        else:
-            max_curvature = 0
-
-        self.curvature_slider.setMaximum(int(max_curvature))
-        if self.curvature_slider.value() > max_curvature:
-            self.curvature_slider.setValue(int(max_curvature))'''
 
     def toggle_curvature_slider(self, value):
         if value == "Curved":
@@ -196,23 +211,15 @@ class HeatMapWindow(QMainWindow):
         distance_m = self.distance_slider.value()
         delay_deg = self.delay_slider.value()
         frequency = self.frequency_spinbox.value()
-        speed = self.propagation_speed
+        speed = self.speed_spinbox.value()
+        wave_type = self.wave_type_combo.currentText()
         array_geometry = self.array_geometry_combo.currentText()
-
-        # Calculate wave properties
-        wavelength = speed / frequency  # λ = propagation speed / f
-        if distance_m != 0:
-            distance_lambda = (1 / distance_m) * wavelength  # Distance in wavelengths
-        else:
-            distance_lambda = 0
-        k = 2 * np.pi / wavelength  # Wavenumber (2π/λ)
-        delay_rad = np.deg2rad(delay_deg)  # Convert delay from degrees to radians
 
         # Generate grid for the heatmap
         size = 500  # Grid size:  number of points along each axis (500x500 grid)
         extent = 10  # Coordinate range (-extent to extent): the grid covers coordinates from -10 to 10
         x = np.linspace(-extent, extent, size) # Generates 500 equally spaced points between -10 and 10
-        y = np.linspace(0, 20, size)
+        y = np.linspace(-extent, extent, size)
         self.X, self.Y = np.meshgrid(x, y) # Creates two 2D arrays (self.X and self.Y) representing the x and y coordinates at each grid point
 
         '''
@@ -224,15 +231,19 @@ class HeatMapWindow(QMainWindow):
         This results in all possible (X, Y) pairs: (1, 4), (2, 4), (3, 4)
                                                    (1, 5), (2, 5), (3, 5)
         '''
+        # Calculate wave properties
+        wavelength = speed / frequency  # λ = propagation speed / f
+        k = 2 * np.pi / wavelength  # Wavenumber (2π/λ)
+        delay_rad = np.deg2rad(delay_deg)  # Convert delay from degrees to radians
 
         # Determine antenna x positions, evenly spaced and centered around 0
-        antenna_positions = np.linspace(-((num_antennas - 1) * distance_lambda) / 2,
-                                        ((num_antennas - 1) * distance_lambda) / 2,
+        antenna_positions = np.linspace(-((num_antennas - 1) * distance_m) / 2,
+                                        ((num_antennas - 1) * distance_m) / 2,
                                         num_antennas)
 
         if array_geometry == "Curved":
             curvature = self.curvature
-            y_positions = 0.3 * np.max(self.Y) - curvature * (antenna_positions ** 2)  # Change Y positions only
+            y_positions = -curvature * (antenna_positions ** 2)  # Change Y positions only
         else:
             y_positions = np.full_like(antenna_positions, 0)  # If linear, set all y positions to 0
 
@@ -242,72 +253,83 @@ class HeatMapWindow(QMainWindow):
             R = np.sqrt((self.X - x_pos) ** 2 + (self.Y - y_pos) ** 2) # Calculate the distance R from the antenna to each grid point.
             phase_delay = -i * delay_rad # Apply a phase delay (phase_delay) for each antenna.
 
-            self.Z += np.sin(k * R + phase_delay) # equation of sine wave as a function of position R
-
-        # Update Z values to mask the lower half (Y < 0)
-        # self.Z[self.Y > 0] = np.nan  # Set lower half to NaN
+            # Based on the selected wave_type, add the contribution to the grid self.Z
+            if wave_type == "Isotropic":
+                self.Z += np.sin(k * R + phase_delay) # equation of sine wave as a function of position R
+            elif wave_type == "Sinc":
+                self.Z += np.sinc(k * R / np.pi + phase_delay)
+            elif wave_type == "Gaussian":
+                self.Z += np.exp(-((R - i * delay_rad) ** 2) / (2 * wavelength ** 2))
+            elif wave_type == "Cosine":
+                self.Z += np.cos(k * R + phase_delay)
 
         # Plot heatmap
-        heatmap = ax.imshow(self.Z, cmap="gray", extent=[-extent, extent, 0, 20], origin='lower') # Displays the wave pattern (self.Z) as a grayscale image.
-        self.heatmap_fig.colorbar(heatmap, ax=ax, label="Intensity") # Adds a color bar to show the scale.
+        heatmap = ax.imshow(self.Z, cmap="gray", extent=[-extent, extent, -extent, extent]) # Displays the wave pattern (self.Z) as a grayscale image.
+        self.heatmap_fig.colorbar(heatmap, ax=ax) # Adds a color bar to show the scale.
 
         # Plot antenna positions
         ax.scatter(antenna_positions, y_positions, color="blue", s=50, label="Antenna")
 
         # Add labels and title
-        # ax.set_title("Wave Heatmap")
-        # ax.set_xlabel("Distance (m)")
-        # ax.set_ylabel("Distance (m)")
+        ax.set_title(f"{wave_type} Wave Heatmap")
+        ax.set_xlabel("Distance (m)")
+        ax.set_ylabel("Distance (m)")
         ax.legend()
         self.heatmap_canvas.draw()
 
+    # plotting a cross-section (profile) of the heatmap, either horizontally or vertically.
     def plot_beam_profile(self):
-
-        # Retrieve user inputs
-        num_antennas = self.num_antennas_slider.value()
-        distance_m = self.distance_slider.value()
-        delay_deg = self.delay_slider.value()
-        frequency = self.frequency_spinbox.value()
-        speed = self.propagation_speed
-
-        # Calculate wave properties
-        wavelength = speed / frequency  # λ = propagation speed / f
-        if distance_m != 0:
-            distance_lambda = (1 / distance_m) * wavelength  # Distance in wavelengths
-        else:
-            distance_lambda = 0
-        k = 2 * np.pi / wavelength  # Wavenumber (2π/λ)
-        delay_rad = np.deg2rad(delay_deg)  # Convert delay from degrees to radians
-
         # Clear the previous figure
         self.profile_fig.clear()
 
-        amplitudes = np.ones(num_antennas)
-        azimuth_angles = np.linspace(0, 2 * np.pi, 360)
-        AF = np.zeros_like(azimuth_angles, dtype=complex)
-        for n in range(num_antennas):
-            AF += amplitudes[n] * np.exp(1j * n * (k * distance_lambda * np.cos(azimuth_angles) + delay_rad))
-            
-        # Plot the gain pattern on a polar graph
-        ax = self.profile_fig.add_subplot(111, polar=True)
-        ax.plot(azimuth_angles, np.abs(AF))
-        # plt.show()
+        # # Create a polar subplot
+        # ax = self.profile_fig.add_subplot(111, polar=True)
 
-        ax.set_yticklabels([])
+        # # Get the user's choice for the profile orientation
+        # profile_orientation = self.profile_orientation_combo.currentText()
 
-        # Configure the polar plot to show only half the circle (0 to 180 degrees or 0 to π radians)
-        ax.set_theta_offset(0)  # Start at 0°
-        ax.set_theta_direction(1)  # Clockwise direction
-        ax.set_xlim([0, np.pi])  # Limit the visible angle range to 0 to π (half-circle)
+        # # Calculate the data for the polar plot
+        # if profile_orientation == "Horizontal":
+        #     central_row = self.Z[self.Z.shape[0] // 2, :]  # Central row of the heatmap
+        #     angles = np.linspace(-np.pi, np.pi, len(central_row))  # Angle values in radians
+        #     values = central_row
+        # else:
+        #     central_column = self.Z[:, self.Z.shape[1] // 2]  # Central column of the heatmap
+        #     angles = np.linspace(-np.pi / 2, np.pi / 2, len(central_column))  # Angle values for vertical profile
+        #     values = central_column
 
-        # Remove the upper half-circle and set the limits to the bottom half only
-        ax.set_ylim(0, np.max(np.abs(AF)))  # Optionally adjust the radial limits if needed
+        # # Plot the data in polar coordinates
+        # ax.plot(angles, values, label=f"{profile_orientation} Beam Profile")
+
+        # # Add labels and title
+        # ax.set_title(f"Beam Profile ({profile_orientation} Slice)")
+        # ax.legend(loc="upper right")
+        # self.profile_canvas.draw()
+
+        ax = self.profile_fig.add_subplot(111)
+
+        # Gets the user's choice for the profile orientation (Horizontal or Vertical)
+        profile_orientation = self.profile_orientation_combo.currentText()
+
+        # Plot the central row or column of the heatmap
+        if profile_orientation == "Horizontal":
+            central_row = self.Z[self.Z.shape[0] // 2, :] # Gets the central row of the heatmap
+            ax.plot(self.X[0, :], central_row, label="Horizontal Beam Profile") # Plots the central row against x values
+            ax.set_xlabel("X-axis")
+        else:
+            central_column = self.Z[:, self.Z.shape[1] // 2] # Gets the central column of the heatmap
+            ax.plot(self.Y[:, 0], central_column, label="Vertical Beam Profile") # Plots the central column against y values
+            ax.set_xlabel("Y-axis")
+        '''
+        when you take the middle row or column of self.Z, you are extracting a 1D slice of the 2D wave distribution, which represents the wave intensity (or amplitude) along a specific axis (x and y).
+        '''
 
         # Add labels and title
-        # ax.set_title("Beam Profile)")
-        # ax.legend()
+        ax.set_title(f"Beam Profile ({profile_orientation} Slice)")
+        ax.set_ylabel("Amplitude")
+        ax.legend()
         self.profile_canvas.draw()
-        
+
     def generate_heatmap_and_profile(self):
         self.plot_heatmap()
         self.plot_beam_profile()
