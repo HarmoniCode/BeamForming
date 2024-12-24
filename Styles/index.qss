@@ -22,9 +22,20 @@ QFrame#form_frame{
     padding: 10px;
 }
 
+QFrame#frequency_frame{
+    border: 2px solid #2196f3;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 QLabel {
   color: #000;
   font-weight: bold;
+}
+
+QLabel#frequency_label{
+    font-size: 13px;
+    padding-left: 5px;
 }
 
 QPushButton {
@@ -101,7 +112,7 @@ QComboBox QAbstractItemView {
 
 
 QDoubleSpinBox{
-    border: 1px solid #ccc;
+    border: 1px solid #8f8e8e;
     border-radius: 5px;
     padding: 9px;
     font-size: 12px;

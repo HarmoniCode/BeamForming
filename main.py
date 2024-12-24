@@ -57,7 +57,7 @@ class HeatMapWindow(QMainWindow):
         from_frame = QFrame()
         from_frame.setObjectName("form_frame")
         form_layout = QFormLayout()
-        form_layout.setSpacing(10)
+        form_layout.setSpacing(15)
         from_frame.setLayout(form_layout)
         
 
@@ -141,7 +141,7 @@ class HeatMapWindow(QMainWindow):
         distance_layout.addWidget(self.distance_slider)
         distance_layout.addWidget(self.distance_label)
 
-        form_layout.addRow("Distance between antennas (m):", distance_layout)
+        form_layout.addRow("Distance between antennas ( λ ):", distance_layout)
 
         # Delay between antennas
         self.delay_slider = QSlider(Qt.Horizontal)  # Horizontal slider
@@ -199,7 +199,13 @@ class HeatMapWindow(QMainWindow):
 
         # Frequency controls for each antenna
         self.frequency_controls = []
+        frequency_frame = QFrame()
+        frequency_frame.setObjectName("frequency_frame")
+        frequency_layout = QVBoxLayout(frequency_frame)
+        frequency_layout.setSpacing(10)
+
         for i in range(self.num_antennas):
+            H_layout = QHBoxLayout()
             spinbox = QDoubleSpinBox()
             spinbox.setValue(self.frequency)  # Default frequency
             spinbox.setSingleStep(1)
@@ -207,8 +213,15 @@ class HeatMapWindow(QMainWindow):
             spinbox.setMinimum(1)
             spinbox.valueChanged.connect(lambda value, idx=i: self.update_antenna_frequency(idx, value))
             self.frequency_controls.append(spinbox)
-            form_layout.addRow(f"Frequency of Antenna {i+1} (Hz):", spinbox)
+            frequency_label = QLabel(f"Frequency of Antenna {i+1} (Hz):")
+            frequency_label.setObjectName("frequency_label")
+            frequency_label.setMaximumWidth(250)
+            H_layout.addWidget(frequency_label)
+            H_layout.addWidget(spinbox)
+            frequency_layout.addLayout(H_layout)
 
+        form_layout.addRow("Frequencies:", frequency_frame)
+        
         # Generate button
         generate_button = QPushButton("Update Heatmap and Beam Profile")
         generate_button.clicked.connect(self.generate_heatmap_and_profile)
