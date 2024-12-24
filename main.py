@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from PyQt5.QtWidgets import (QApplication,QMainWindow,QWidget,QVBoxLayout,QHBoxLayout,QFormLayout,QSpinBox,QDoubleSpinBox,
-QComboBox,QPushButton,QSlider,QLabel)
+QComboBox,QPushButton,QSlider,QLabel,QFrame)
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 import sys
@@ -25,6 +25,7 @@ class HeatMapWindow(QMainWindow):
         self.antenna_frequencies = [self.frequency] * self.num_antennas  # Default frequency for all antennas
         # self.frequency_controls = [] # empty list for frequency controls
         self.manual_position_update = False  # Flag to track manual position updates
+        self.frequency_controls = []
 
         self.initUI()
 
@@ -35,19 +36,37 @@ class HeatMapWindow(QMainWindow):
         layout = QHBoxLayout(central_widget)
 
         # Create the Matplotlib figures and canvases
+        heatmap_frame = QFrame()
+        heatmap_frame.setObjectName("heatmap_frame")
+        heatmap_frame.setMinimumWidth(800)
+        heatmap_layout = QHBoxLayout()
+        heatmap_frame.setLayout(heatmap_layout)
         self.heatmap_fig = Figure()
         self.heatmap_canvas = FigureCanvas(self.heatmap_fig)
+        heatmap_layout.addWidget(self.heatmap_canvas)
+
+        profile_frame = QFrame()
+        profile_frame.setObjectName("profile_frame")
+        profile_frame.setMinimumWidth(800)
+        profile_layout = QHBoxLayout()
+        profile_frame.setLayout(profile_layout)
         self.profile_fig = Figure()
         self.profile_canvas = FigureCanvas(self.profile_fig)
+        profile_layout.addWidget(self.profile_canvas)
 
         # Form layout for inputs
-        form_layout = QFormLayout()
+        from_frame = QFrame()
+        from_frame.setObjectName("form_frame")
+        self.form_layout = QFormLayout()
+        self.form_layout.setSpacing(10)
+        from_frame.setLayout(self.form_layout)
+        
 
         # Add antenna selector
         self.antenna_selector = QComboBox()
         self.antenna_selector.addItems([f"Antenna {i+1}" for i in range(self.num_antennas)])
         self.antenna_selector.currentIndexChanged.connect(self.update_selected_antenna)
-        form_layout.addRow("Select Antenna:", self.antenna_selector)
+        self.form_layout.addRow("Select Antenna:", self.antenna_selector)
 
         # Add position controls (x and y sliders)
         self.x_position_slider = QDoubleSpinBox()
@@ -55,14 +74,14 @@ class HeatMapWindow(QMainWindow):
         self.x_position_slider.setSingleStep(0.1)
         self.x_position_slider.setValue(0)
         self.x_position_slider.valueChanged.connect(self.update_antenna_position)
-        form_layout.addRow("X Position:", self.x_position_slider)
+        self.form_layout.addRow("X Position:", self.x_position_slider)
 
         self.y_position_slider = QDoubleSpinBox()
         self.y_position_slider.setRange(0, 10)
         self.y_position_slider.setSingleStep(0.1)
         self.y_position_slider.setValue(0)
         self.y_position_slider.valueChanged.connect(self.update_antenna_position)
-        form_layout.addRow("Y Position:", self.y_position_slider)
+        self.form_layout.addRow("Y Position:", self.y_position_slider)
 
 
         # Number of antennas
@@ -81,13 +100,14 @@ class HeatMapWindow(QMainWindow):
         self.num_antennas_slider.valueChanged.connect(
             lambda value: self.num_antennas_label.setText(f"{value}")
         )
+        self.num_antennas_slider.valueChanged.connect(self.update_spinboxes)
         # self.num_antennas_slider.valueChanged.connect(self.update_num_antennas)
 
         # self.num_antennas_slider.valueChanged.connect(self.update_param_limits)
 
         # Add slider and label to the form layout
-        form_layout.addRow("Number of Antennas:", self.num_antennas_slider)
-        form_layout.addRow("Selected Antennas:", self.num_antennas_label)
+        self.form_layout.addRow("Number of Antennas:", self.num_antennas_slider)
+        self.form_layout.addRow("Selected Antennas:", self.num_antennas_label)
 
         # Distance between antennas
         self.distance_slider = QSlider(Qt.Horizontal)  # Horizontal slider
@@ -108,8 +128,8 @@ class HeatMapWindow(QMainWindow):
         # self.distance_slider.valueChanged.connect(self.update_param_limits)
 
         # Add slider and label to the form layout
-        form_layout.addRow("Distance between antennas (m):", self.distance_slider)
-        form_layout.addRow("Distance (m):", self.distance_label)
+        self.form_layout.addRow("Distance between antennas (m):", self.distance_slider)
+        self.form_layout.addRow("Distance (m):", self.distance_label)
 
         # Delay between antennas
         self.delay_slider = QSlider(Qt.Horizontal)  # Horizontal slider
@@ -130,8 +150,8 @@ class HeatMapWindow(QMainWindow):
         self.delay_slider.valueChanged.connect(self.generate_heatmap_and_profile)  # Update heatmap and profile dynamically
 
         # Add slider and label to the form layout
-        form_layout.addRow("Delay between antennas (in degrees):", self.delay_slider)
-        form_layout.addRow("Degrees:", self.delay_label)
+        self.form_layout.addRow("Delay between antennas (in degrees):", self.delay_slider)
+        self.form_layout.addRow("Degrees:", self.delay_label)
 
         # Frequency of the wave
         self.frequency_spinbox = QDoubleSpinBox()
@@ -139,13 +159,13 @@ class HeatMapWindow(QMainWindow):
         self.frequency_spinbox.setSingleStep(1)
         self.frequency_spinbox.setValue(self.frequency)
         self.frequency_spinbox.setMaximum(1e12)  # Large max value
-        form_layout.addRow("Signal Frequency (Hz):", self.frequency_spinbox)
+        self.form_layout.addRow("Signal Frequency (Hz):", self.frequency_spinbox)
 
         # Array geometry type (Linear or Curved)
         self.array_geometry_combo = QComboBox()
         self.array_geometry_combo.addItems(["Linear", "Curved"])
         self.array_geometry_combo.currentTextChanged.connect(self.toggle_curvature_slider)
-        form_layout.addRow("Array Geometry:", self.array_geometry_combo)
+        self.form_layout.addRow("Array Geometry:", self.array_geometry_combo)
 
         # Curvature slider
         self.curvature_slider_label = QLabel("Curvature (0 = Flat):")
@@ -157,31 +177,22 @@ class HeatMapWindow(QMainWindow):
         self.curvature_slider.valueChanged.connect(self.update_curvature)
         # self.curvature_slider.valueChanged.connect(self.update_param_limits)
         self.curvature_slider.setDisabled(True)
-        form_layout.addRow(self.curvature_slider_label, self.curvature_slider)
+        self.form_layout.addRow(self.curvature_slider_label, self.curvature_slider)
 
         # Frequency controls for each antenna
-        self.frequency_controls = []
-        for i in range(self.num_antennas):
-            spinbox = QDoubleSpinBox()
-            spinbox.setValue(self.frequency)  # Default frequency
-            spinbox.setSingleStep(1)
-            spinbox.setMaximum(1e12)
-            spinbox.setMinimum(1)
-            spinbox.valueChanged.connect(lambda value, idx=i: self.update_antenna_frequency(idx, value))
-            self.frequency_controls.append(spinbox)
-            form_layout.addRow(f"Frequency of Antenna {i+1} (Hz):", spinbox)
+        self.update_spinboxes(self.num_antennas)
 
         # Generate button
         generate_button = QPushButton("Update Heatmap and Beam Profile")
         generate_button.clicked.connect(self.generate_heatmap_and_profile)
-        form_layout.addWidget(generate_button)
+        self.form_layout.addWidget(generate_button)
 
-        layout.addLayout(form_layout)
+        layout.addWidget(from_frame)
 
         # Add canvases to the layout
         canvases_layout = QVBoxLayout()
-        canvases_layout.addWidget(self.heatmap_canvas)
-        canvases_layout.addWidget(self.profile_canvas)
+        canvases_layout.addWidget(heatmap_frame)
+        canvases_layout.addWidget(profile_frame)
 
         layout.addLayout(canvases_layout)
 
@@ -246,6 +257,23 @@ class HeatMapWindow(QMainWindow):
         # Regenerate heatmap and profile
         self.generate_heatmap_and_profile()
         '''
+    
+    def update_spinboxes(self, num_antennas):
+        # Clear existing spinboxes
+        for spinbox in self.frequency_controls:
+            self.form_layout.removeRow(spinbox)
+        self.frequency_controls = []
+
+        # Create new spinboxes based on the number of antennas
+        for i in range(num_antennas):
+            spinbox = QDoubleSpinBox()
+            spinbox.setValue(self.frequency)  # Default frequency
+            spinbox.setSingleStep(1)
+            spinbox.setMaximum(1e12)
+            spinbox.setMinimum(1)
+            spinbox.valueChanged.connect(lambda value, idx=i: self.update_antenna_frequency(idx, value))
+            self.frequency_controls.append(spinbox)
+            self.form_layout.addRow(f"Frequency of Antenna {i+1} (Hz):", spinbox)
 
     def update_selected_antenna(self):
         """Update sliders to reflect the selected antenna's current position."""
@@ -423,6 +451,8 @@ class HeatMapWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    with open("./Styles/index.qss") as f:
+        app.setStyleSheet(f.read())
     main_window = HeatMapWindow()
     main_window.show()
     sys.exit(app.exec_())
