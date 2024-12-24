@@ -15,7 +15,7 @@ class HeatMapWindow(QMainWindow):
         self.setGeometry(100, 100, 1200, 800)
 
         # Initialize default values
-        self.num_antennas = 8
+        self.num_antennas = 10
         self.distance_m = 2  # Distance in meters -> 1/2 wavelength
         self.delay_deg = 0  # Delay in degrees
         self.frequency = 100  # Default: 100 Hz
@@ -81,6 +81,8 @@ class HeatMapWindow(QMainWindow):
         self.num_antennas_slider.valueChanged.connect(
             lambda value: self.num_antennas_label.setText(f"{value}")
         )
+        # self.num_antennas_slider.valueChanged.connect(self.update_num_antennas)
+
         # self.num_antennas_slider.valueChanged.connect(self.update_param_limits)
 
         # Add slider and label to the form layout
@@ -89,8 +91,8 @@ class HeatMapWindow(QMainWindow):
 
         # Distance between antennas
         self.distance_slider = QSlider(Qt.Horizontal)  # Horizontal slider
-        self.distance_slider.setMinimum(0)
-        self.distance_slider.setMaximum(4)
+        self.distance_slider.setMinimum(1)
+        self.distance_slider.setMaximum(10)
         self.distance_slider.setValue(self.distance_m)  # Set default value
         self.distance_slider.setTickInterval(1)  # Set tick intervals
         self.distance_slider.setTickPosition(QSlider.TicksBelow)  # Show ticks below the slider
@@ -157,31 +159,17 @@ class HeatMapWindow(QMainWindow):
         self.curvature_slider.setDisabled(True)
         form_layout.addRow(self.curvature_slider_label, self.curvature_slider)
 
-        # Add antenna selector
-        self.antenna_selector = QComboBox()
-        self.antenna_selector.addItems([f"Antenna {i + 1}" for i in range(self.num_antennas)])
-        self.antenna_selector.currentIndexChanged.connect(self.update_frequency_spinbox)
-        form_layout.addRow("Select Antenna:", self.antenna_selector)
-
-        # Add single spinbox for selected antenna's frequency
-        self.antenna_frequency_spinbox = QDoubleSpinBox()
-        self.antenna_frequency_spinbox.setRange(1, 1e12)
-        self.antenna_frequency_spinbox.setSingleStep(1)
-        self.antenna_frequency_spinbox.setValue(self.antenna_frequencies[0])  # Set to the first antenna's frequency
-        self.antenna_frequency_spinbox.valueChanged.connect(self.update_selected_antenna_frequency)
-        form_layout.addRow("Selected Antenna Frequency (Hz):", self.antenna_frequency_spinbox)
-
-        # # Frequency controls for each antenna
-        # self.frequency_controls = []
-        # for i in range(self.num_antennas):
-        #     spinbox = QDoubleSpinBox()
-        #     spinbox.setValue(self.frequency)  # Default frequency
-        #     spinbox.setSingleStep(1)
-        #     spinbox.setMaximum(1e12)
-        #     spinbox.setMinimum(1)
-        #     spinbox.valueChanged.connect(lambda value, idx=i: self.update_antenna_frequency(idx, value))
-        #     self.frequency_controls.append(spinbox)
-        #     form_layout.addRow(f"Frequency of Antenna {i+1} (Hz):", spinbox)
+        # Frequency controls for each antenna
+        self.frequency_controls = []
+        for i in range(self.num_antennas):
+            spinbox = QDoubleSpinBox()
+            spinbox.setValue(self.frequency)  # Default frequency
+            spinbox.setSingleStep(1)
+            spinbox.setMaximum(1e12)
+            spinbox.setMinimum(1)
+            spinbox.valueChanged.connect(lambda value, idx=i: self.update_antenna_frequency(idx, value))
+            self.frequency_controls.append(spinbox)
+            form_layout.addRow(f"Frequency of Antenna {i+1} (Hz):", spinbox)
 
         # Generate button
         generate_button = QPushButton("Update Heatmap and Beam Profile")
@@ -202,6 +190,7 @@ class HeatMapWindow(QMainWindow):
 
         # Generate initial heatmap and beam profile
         self.generate_heatmap_and_profile()
+    
     '''
     def update_param_limits(self):
         # Retrieve current slider values
@@ -211,6 +200,7 @@ class HeatMapWindow(QMainWindow):
         # Update maximum distance between antennas
         max_distance = 2 * max_extent / (num_antennas - 1) if num_antennas > 1 else max_extent
         self.distance_slider.setMaximum(int(max_distance))
+        # self.distance_slider.setValue(min(self.distance_slider.value(), int(max_distance)))
         if self.distance_slider.value() > max_distance:
             self.distance_slider.setValue(int(max_distance))
 
@@ -224,20 +214,38 @@ class HeatMapWindow(QMainWindow):
 
         self.curvature_slider.setMaximum(int(max_curvature))
         if self.curvature_slider.value() > max_curvature:
-            self.curvature_slider.setValue(int(max_curvature))'''
+            self.curvature_slider.setValue(int(max_curvature))
+            '''
+    
+    '''
+    def update_num_antennas(self, value):
+        """Update the number of antennas and redraw the UI."""
+        self.num_antennas = value
 
-    def update_frequency_spinbox(self):
-        """Update the frequency spinbox to show the frequency of the selected antenna."""
-        selected_index = self.antenna_selector.currentIndex()
-        self.antenna_frequency_spinbox.setValue(self.antenna_frequencies[selected_index])
+        # Update antenna selector items
+        self.antenna_selector.clear()
+        self.antenna_selector.addItems([f"Antenna {i+1}" for i in range(self.num_antennas)])
 
-    def update_selected_antenna_frequency(self):
-        """Update the frequency of the currently selected antenna."""
-        selected_index = self.antenna_selector.currentIndex()
-        new_frequency = self.antenna_frequency_spinbox.value()
-        self.antenna_frequencies[selected_index] = new_frequency
-        self.generate_heatmap_and_profile()  # Recalculate the heatmap and beam profile
+        # Update frequency controls
+        for spinbox in self.frequency_controls:
+            spinbox.deleteLater()  # Remove old spinboxes
+        self.frequency_controls = []  # Clear the list
 
+        self.antenna_frequencies = [self.frequency] * self.num_antennas  # Reset frequencies
+
+        for i in range(self.num_antennas):
+            spinbox = QDoubleSpinBox()
+            spinbox.setValue(self.frequency)  # Default frequency
+            spinbox.setSingleStep(1)
+            spinbox.setMaximum(1e12)
+            spinbox.setMinimum(1)
+            spinbox.valueChanged.connect(lambda value, idx=i: self.update_antenna_frequency(idx, value))
+            self.frequency_controls.append(spinbox)
+            self.findChild(QFormLayout).addRow(f"Frequency of Antenna {i+1} (Hz):", spinbox)
+
+        # Regenerate heatmap and profile
+        self.generate_heatmap_and_profile()
+        '''
 
     def update_selected_antenna(self):
         """Update sliders to reflect the selected antenna's current position."""
@@ -312,7 +320,7 @@ class HeatMapWindow(QMainWindow):
 
             if array_geometry == "Curved":
                 curvature = self.curvature
-                self.y_positions = 0.3 * np.max(self.Y) - curvature * (self.antenna_positions ** 2)  # Change Y positions only
+                self.y_positions = 0.4 * np.max(self.Y) - curvature * (self.antenna_positions ** 2)  # Change Y positions only
             else:
                 self.y_positions = np.full_like(self.antenna_positions, 0)  # If linear, set all y positions to 0
         else:
@@ -321,12 +329,6 @@ class HeatMapWindow(QMainWindow):
 
         # Superimpose waves from all antennas (superposition principle)
         self.Z = np.zeros_like(self.X) # a 2D array that contains the calculated wave amplitude values for each point on the grid    
-        
-        # for i, (x_pos, y_pos) in enumerate(zip(self.antenna_positions, self.y_positions)):
-        #     R = np.sqrt((self.X - x_pos) ** 2 + (self.Y - y_pos) ** 2) # Calculate the distance R from the antenna to each grid point.
-        #     phase_delay = -i * delay_rad # Apply a phase delay (phase_delay) for each antenna.
-
-        #     self.Z += np.sin(k * R + phase_delay) # equation of sine wave as a function of position R
 
         # Update the loop in the plot_heatmap method to use the individual frequencies:
         for i, (x_pos, y_pos) in enumerate(zip(self.antenna_positions, self.y_positions)):
@@ -394,13 +396,6 @@ class HeatMapWindow(QMainWindow):
             phase_term = -k * (frequencies[i]/frequency) * r * np.cos(azimuth_angles - theta) + phases[i]
             AF += np.exp(1j * phase_term)
 
-
-        # amplitudes = np.ones(num_antennas)
-        # azimuth_angles = np.linspace(0, 2 * np.pi, 360)
-        # AF = np.zeros_like(azimuth_angles, dtype=complex)
-        # for n in range(num_antennas):
-        #     AF += amplitudes[n] * np.exp(1j * n * (k * distance_lambda * np.cos(azimuth_angles) + delay_rad))
-            ##############################################################################################################
         # Plot the gain pattern on a polar graph
         ax = self.profile_fig.add_subplot(111, polar=True)
         ax.plot(azimuth_angles, np.abs(AF))

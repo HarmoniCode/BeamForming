@@ -1,0 +1,8 @@
+{
+    "num_antennas": 10,
+    "distance_m": 2,
+    "delay_deg": 0,
+    "frequency": 100,
+    "array_geometry": "Linear",
+    "curvature": 0.0
+}
