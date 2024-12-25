@@ -2,15 +2,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from PyQt5.QtWidgets import (QSizePolicy,QSpacerItem, QApplication,QMainWindow,QWidget,QVBoxLayout,QHBoxLayout,QFormLayout,QSpinBox,QDoubleSpinBox,
-QComboBox,QPushButton,QSlider,QLabel,QFrame)
+from PyQt5.QtWidgets import (QSizePolicy, QSpacerItem, QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QFormLayout, QSpinBox, QDoubleSpinBox,
+                             QComboBox, QPushButton, QSlider, QLabel, QFrame)
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 import sys
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class HeatMapWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        logging.debug("Initializing HeatMapWindow")
         self.setWindowTitle("Beamforming Simulator")
         self.setGeometry(100, 100, 1200, 800)
 
@@ -23,12 +28,12 @@ class HeatMapWindow(QMainWindow):
         self.array_geometry = "Linear"  # Default array geometry
         self.curvature = 0.0  # Default curvature for curved array
         self.antenna_frequencies = [self.frequency] * self.num_antennas  # Default frequency for all antennas
-        # self.frequency_controls = [] # empty list for frequency controls
         self.manual_position_update = False  # Flag to track manual position updates
 
         self.initUI()
 
     def initUI(self):
+        logging.debug("Setting up UI")
         # Central widget for the window
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
@@ -66,7 +71,6 @@ class HeatMapWindow(QMainWindow):
         self.form_layout = QFormLayout()
         self.form_layout.setSpacing(15)
         from_frame.setLayout(self.form_layout)
-        
 
         # Add antenna selector
         self.antenna_selector = QComboBox()
@@ -80,7 +84,6 @@ class HeatMapWindow(QMainWindow):
         self.x_position_slider.setSingleStep(0.1)
         self.x_position_slider.setValue(0)
         self.x_position_slider.valueChanged.connect(self.update_antenna_position)
-        # self.form_layout.addRow("X Position:                                                       ", self.x_position_slider)
         self.add_labeled_row("X Position:", self.x_position_slider)
 
         self.y_position_slider = QDoubleSpinBox()
@@ -88,7 +91,6 @@ class HeatMapWindow(QMainWindow):
         self.y_position_slider.setSingleStep(0.1)
         self.y_position_slider.setValue(0)
         self.y_position_slider.valueChanged.connect(self.update_antenna_position)
-
         self.add_labeled_row("Y Position:", self.y_position_slider)
 
         # Number of antennas
@@ -109,18 +111,10 @@ class HeatMapWindow(QMainWindow):
         self.num_antennas_slider.valueChanged.connect(
             lambda value: self.num_antennas_label.setText(f"{value}")
         )
-        # self.num_antennas_slider.valueChanged.connect(self.update_num_antennas)
-
-        # self.num_antennas_slider.valueChanged.connect(self.update_param_limits)
-
-        # Add slider and label to the form layout
 
         num_antennas_layout = QHBoxLayout()
         num_antennas_layout.addWidget(self.num_antennas_slider)
         num_antennas_layout.addWidget(self.num_antennas_label)
-
-        # form_layout.addRow("Number of Antennas:", self.num_antennas_slider)
-        # form_layout.addRow("Selected Antennas:", self.num_antennas_label)
         self.add_labeled_row("Number of Antennas:", num_antennas_layout)
 
         # Distance between antennas
@@ -134,25 +128,17 @@ class HeatMapWindow(QMainWindow):
         # Label to display the current value of the slider
         self.distance_label = QLabel(f"{self.distance_m}")  # Display initial value
         self.distance_label.setObjectName("label_with_border")
-        
         self.distance_label.setMinimumWidth(50)
-
         self.distance_label.setAlignment(Qt.AlignCenter)
 
         # Connect slider value change signal to update the label
         self.distance_slider.valueChanged.connect(
             lambda value: self.distance_label.setText(f"{value}")
         )
-        # self.distance_slider.valueChanged.connect(self.update_param_limits)
 
-        # Add slider and label to the form layout
-
-        # Create a horizontal layout for the distance slider and label
         distance_layout = QHBoxLayout()
         distance_layout.addWidget(self.distance_slider)
         distance_layout.addWidget(self.distance_label)
-
-        # self.form_layout.addRow("Distance between antennas ( λ ):                ", distance_layout)
         self.add_labeled_row("Distance between antennas ( λ ): ", distance_layout)
 
         # Delay between antennas
@@ -167,7 +153,6 @@ class HeatMapWindow(QMainWindow):
         self.delay_label = QLabel(f"{self.distance_m}")  # Display initial value
         self.delay_label.setObjectName("label_with_border")
         self.delay_label.setMinimumWidth(50)
-        
         self.delay_label.setAlignment(Qt.AlignCenter)
 
         # Connect slider value change signal to update the label
@@ -180,24 +165,20 @@ class HeatMapWindow(QMainWindow):
         delay_layout.setAlignment(Qt.AlignCenter)
         delay_layout.addWidget(self.delay_slider)
         delay_layout.addWidget(self.delay_label)
-
-        # Add slider and label to the form layout
-        # self.form_layout.addRow("Delay between antennas (in degrees):       ", delay_layout)
         self.add_labeled_row("Delay between antennas (in degrees): ", delay_layout)
 
         # Frequency of the wave
         self.frequency_spinbox = QDoubleSpinBox()
-        # self.frequency_spinbox.setDecimals(2)
         self.frequency_spinbox.setSingleStep(1)
         self.frequency_spinbox.setValue(self.frequency)
         self.frequency_spinbox.setMaximum(1e12)  # Large max value
-        
+
         label_frame = QFrame()
         label_frame.setObjectName("label_frame")
         label_frame.setMinimumWidth(300)
         label_layout = QHBoxLayout()
         label_frame.setLayout(label_layout)
-        label=QLabel("Signal Frequency (Hz):")
+        label = QLabel("Signal Frequency (Hz):")
         label_layout.addWidget(label)
         label_layout.addSpacerItem(QSpacerItem(50, 0, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
         self.form_layout.addRow(label_frame, self.frequency_spinbox)
@@ -206,20 +187,16 @@ class HeatMapWindow(QMainWindow):
         self.array_geometry_combo = QComboBox()
         self.array_geometry_combo.addItems(["Linear", "Curved"])
         self.array_geometry_combo.currentTextChanged.connect(self.toggle_curvature_slider)
-        # self.form_layout.addRow("Array Geometry:                                             ", self.array_geometry_combo)
         self.add_labeled_row("Array Geometry: ", self.array_geometry_combo)
 
         # Curvature slider
-        # self.curvature_slider_label = QLabel("Curvature (0 = Flat):                                      ")
         self.curvature_slider = QSlider(Qt.Horizontal)
         self.curvature_slider.setMinimum(0)
         self.curvature_slider.setMaximum(100)
         self.curvature_slider.setValue(0)
         self.curvature_slider.setTickInterval(10)
         self.curvature_slider.valueChanged.connect(self.update_curvature)
-        # self.curvature_slider.valueChanged.connect(self.update_param_limits)
         self.curvature_slider.setDisabled(True)
-        # self.form_layout.addRow(self.curvature_slider_label, self.curvature_slider)
         self.add_labeled_row("Curvature (0 = Flat): ", self.curvature_slider)
 
         # Frequency controls for each antenna
@@ -246,7 +223,7 @@ class HeatMapWindow(QMainWindow):
             frequency_layout.addLayout(H_layout)
 
         self.form_layout.addRow("Frequencies:", frequency_frame)
-        
+
         # Generate button
         generate_button = QPushButton("Update Heatmap and Beam Profile")
         generate_button.clicked.connect(self.generate_heatmap_and_profile)
@@ -261,75 +238,16 @@ class HeatMapWindow(QMainWindow):
 
         layout.addLayout(canvases_layout)
 
-        # Initialize parameter limitsz - this line is unnecessary
-        # self.update_param_limits()
-
         # Generate initial heatmap and beam profile
         self.generate_heatmap_and_profile()
-    
-    '''
-    def update_param_limits(self):
-        # Retrieve current slider values
-        num_antennas = self.num_antennas_slider.value()
-        max_extent = 10  # Heatmap limits: -10 to 10
 
-        # Update maximum distance between antennas
-        max_distance = 2 * max_extent / (num_antennas - 1) if num_antennas > 1 else max_extent
-        self.distance_slider.setMaximum(int(max_distance))
-        # self.distance_slider.setValue(min(self.distance_slider.value(), int(max_distance)))
-        if self.distance_slider.value() > max_distance:
-            self.distance_slider.setValue(int(max_distance))
-
-        # Update maximum curvature for the curved array
-        distance_m = self.distance_slider.value()
-        if distance_m > 0:
-            max_curvature = max_extent / ((num_antennas - 1) * (distance_m / 2) ** 2) if num_antennas > 1 else 0
-            max_curvature = min(max_curvature, 100)  # Cap at 100 for practicality
-        else:
-            max_curvature = 0
-
-        self.curvature_slider.setMaximum(int(max_curvature))
-        if self.curvature_slider.value() > max_curvature:
-            self.curvature_slider.setValue(int(max_curvature))
-            '''
-    
-    '''
-    def update_num_antennas(self, value):
-        """Update the number of antennas and redraw the UI."""
-        self.num_antennas = value
-
-        # Update antenna selector items
-        self.antenna_selector.clear()
-        self.antenna_selector.addItems([f"Antenna {i+1}" for i in range(self.num_antennas)])
-
-        # Update frequency controls
-        for spinbox in self.frequency_controls:
-            spinbox.deleteLater()  # Remove old spinboxes
-        self.frequency_controls = []  # Clear the list
-
-        self.antenna_frequencies = [self.frequency] * self.num_antennas  # Reset frequencies
-
-        for i in range(self.num_antennas):
-            spinbox = QDoubleSpinBox()
-            spinbox.setValue(self.frequency)  # Default frequency
-            spinbox.setSingleStep(1)
-            spinbox.setMaximum(1e12)
-            spinbox.setMinimum(1)
-            spinbox.valueChanged.connect(lambda value, idx=i: self.update_antenna_frequency(idx, value))
-            self.frequency_controls.append(spinbox)
-            self.findChild(QFormLayout).addRow(f"Frequency of Antenna {i+1} (Hz):", spinbox)
-
-        # Regenerate heatmap and profile
-        self.generate_heatmap_and_profile()
-        '''
-    
-    
-    def add_labeled_row( self,label_text, widget):
+    def add_labeled_row(self, label_text, widget):
+        logging.debug(f"Adding labeled row: {label_text}")
         label_frame = QFrame()
         label_frame.setObjectName("label_frame")
         label_frame.setMinimumWidth(300)
         label_frame.setMaximumWidth(300)
-        
+
         label_layout = QHBoxLayout()
         label_frame.setLayout(label_layout)
         label = QLabel(label_text)
@@ -338,23 +256,25 @@ class HeatMapWindow(QMainWindow):
         self.form_layout.addRow(label_frame, widget)
 
     def update_selected_antenna(self):
-        """Update sliders to reflect the selected antenna's current position."""
+        logging.debug("Updating selected antenna")
         index = self.antenna_selector.currentIndex()
         self.x_position_slider.setValue(self.antenna_positions[index])
         self.y_position_slider.setValue(self.y_positions[index])
 
     def update_antenna_position(self):
-        """Update the position of the selected antenna."""
+        logging.debug("Updating antenna position")
         index = self.antenna_selector.currentIndex()
         self.antenna_positions[index] = self.x_position_slider.value()
         self.y_positions[index] = self.y_position_slider.value()
         self.manual_position_update = True  # Indicate manual update
         self.generate_heatmap_and_profile()
-    
+
     def update_antenna_frequency(self, index, value):
+        logging.debug(f"Updating frequency of antenna {index + 1} to {value} Hz")
         self.antenna_frequencies[index] = value
 
     def toggle_curvature_slider(self, value):
+        logging.debug(f"Toggling curvature slider: {value}")
         if value == "Curved":
             self.curvature_slider.setDisabled(False)
         else:
@@ -362,13 +282,15 @@ class HeatMapWindow(QMainWindow):
             self.curvature = 0.0  # Reset curvature
 
     def update_curvature(self, value):
+        logging.debug(f"Updating curvature to {value}")
         self.curvature = value / 100  # Normalize curvature value
 
     def plot_heatmap(self):
+        logging.debug("Plotting heatmap")
         # Clear the previous figure
         self.heatmap_fig.clear()
 
-        ax = self.heatmap_fig.add_subplot(111) # 111 means a single subplot in a 1x1 grid.
+        ax = self.heatmap_fig.add_subplot(111)  # 111 means a single subplot in a 1x1 grid.
 
         # Retrieve user inputs
         num_antennas = self.num_antennas_slider.value()
@@ -390,23 +312,15 @@ class HeatMapWindow(QMainWindow):
         # Generate grid for the heatmap
         size = 500  # Grid size:  number of points along each axis (500x500 grid)
         extent = 10  # Coordinate range (-extent to extent): the grid covers coordinates from -10 to 10
-        x = np.linspace(-extent, extent, size) # Generates 500 equally spaced points between -10 and 10
+        x = np.linspace(-extent, extent, size)  # Generates 500 equally spaced points between -10 and 10
         y = np.linspace(0, 20, size)
-        self.X, self.Y = np.meshgrid(x, y) # Creates two 2D arrays (self.X and self.Y) representing the x and y coordinates at each grid point
-        '''
-        example:
-          self.X  [ [1 2 3]
-                     [1 2 3] ]
-          self.Y  [ [4 4 4]
-                     [5 5 5] ]
-        This results in all possible (X, Y) pairs: (1, 4), (2, 4), (3, 4)
-                                                   (1, 5), (2, 5), (3, 5)
-        '''
+        self.X, self.Y = np.meshgrid(x, y)  # Creates two 2D arrays (self.X and self.Y) representing the x and y coordinates at each grid point
+
         if not self.manual_position_update:
             # Determine antenna x positions, evenly spaced and centered around 0
             self.antenna_positions = np.linspace(-((num_antennas - 1) * distance_lambda) / 2,
-                                            ((num_antennas - 1) * distance_lambda) / 2,
-                                            num_antennas)
+                                                 ((num_antennas - 1) * distance_lambda) / 2,
+                                                 num_antennas)
 
             if array_geometry == "Curved":
                 curvature = self.curvature
@@ -418,7 +332,7 @@ class HeatMapWindow(QMainWindow):
             self.manual_position_update = False
 
         # Superimpose waves from all antennas (superposition principle)
-        self.Z = np.zeros_like(self.X) # a 2D array that contains the calculated wave amplitude values for each point on the grid    
+        self.Z = np.zeros_like(self.X)  # a 2D array that contains the calculated wave amplitude values for each point on the grid
 
         # Update the loop in the plot_heatmap method to use the individual frequencies:
         for i, (x_pos, y_pos) in enumerate(zip(self.antenna_positions, self.y_positions)):
@@ -430,21 +344,18 @@ class HeatMapWindow(QMainWindow):
             self.Z += np.sin(k * R + phase_delay)
 
         # Plot heatmap
-        heatmap = ax.imshow(self.Z, cmap="gray", extent=[-extent, extent, 0, 20], origin='lower') # Displays the wave pattern (self.Z) as a grayscale image.
-        self.heatmap_fig.colorbar(heatmap, ax=ax, label="Intensity") # Adds a color bar to show the scale.
+        heatmap = ax.imshow(self.Z, cmap="gray", extent=[-extent, extent, 0, 20], origin='lower')  # Displays the wave pattern (self.Z) as a grayscale image.
+        self.heatmap_fig.colorbar(heatmap, ax=ax, label="Intensity")  # Adds a color bar to show the scale.
 
         # Plot antenna positions
         ax.scatter(self.antenna_positions, self.y_positions, color="blue", s=50, label="Antenna")
 
         # Add labels and title
-        # ax.set_title("Wave Heatmap")
-        # ax.set_xlabel("Distance (m)")
-        # ax.set_ylabel("Distance (m)")
         ax.legend()
         self.heatmap_canvas.draw()
 
     def plot_beam_profile(self):
-
+        logging.debug("Plotting beam profile")
         # Retrieve user inputs
         num_antennas = self.num_antennas_slider.value()
         distance_m = self.distance_slider.value()
@@ -507,6 +418,7 @@ class HeatMapWindow(QMainWindow):
         self.profile_canvas.draw()
         
     def generate_heatmap_and_profile(self):
+        logging.debug("Generating heatmap and profile")
         self.plot_heatmap()
         self.plot_beam_profile()
 
