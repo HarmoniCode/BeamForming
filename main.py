@@ -43,7 +43,6 @@ class HeatMapWindow(QMainWindow):
         self.heatmap_fig = Figure()
         self.heatmap_canvas = FigureCanvas(self.heatmap_fig)
         heatmap_layout.addWidget(self.heatmap_canvas)
-        self.heatmap_fig.subplots_adjust(left=-0.35, right=1, top=0.9, bottom=0.1)
 
         profile_frame = QFrame()
         profile_frame.setObjectName("profile_frame")
