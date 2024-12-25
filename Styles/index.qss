@@ -20,6 +20,12 @@ QFrame#heatmap_frame,
 
 QFrame#form_frame{
     padding: 10px;
+    background: white
+}
+
+QFrame#label_frame{
+    background-color: white;
+    border-right: 3px solid #2196f3;
 }
 
 QFrame#frequency_frame{
@@ -36,6 +42,10 @@ QLabel {
 QLabel#frequency_label{
     font-size: 13px;
     padding-left: 5px;
+}
+
+QLabel#label_with_border{
+    border: 1px solid rgb(4, 147, 208);
 }
 
 QPushButton {
@@ -72,7 +82,7 @@ QSlider::handle:horizontal {
 }
 
 QLabel {
-  border: 1px solid rgb(67, 173, 219);
+  /* border: 1px solid rgb(67, 173, 219); */
   background-color: white;
   text-align: center;
   border-radius: 5px;
@@ -84,7 +94,7 @@ QComboBox {
   border-radius: 5px;
   padding: 9px;
   font-size: 12px;
-  height: 20px;
+  height:  15px;
   font-weight: bold;
 }
 QComboBox::drop-down {
@@ -116,15 +126,15 @@ QDoubleSpinBox{
     border-radius: 5px;
     padding: 9px;
     font-size: 12px;
-    height: 10px;
+    height: 15px;
     font-weight: bold;
 }
 
 QDoubleSpinBox::up-button {
     subcontrol-origin: border;
-    subcontrol-position: top right;
-    width: 25px;
-    height: 20px;
+    subcontrol-position:  right;
+    width: 20px;
+    height:  25px;
     image: url(./Styles/Icons/arrow_up.png);
     border-left-width: 1px;
     border-left-color: darkgray;
@@ -137,17 +147,17 @@ QDoubleSpinBox::up-button {
 
 QDoubleSpinBox::down-button {
     subcontrol-origin: border;
-    subcontrol-position: bottom right;
-    width: 25px;
-    height: 20px;
+    subcontrol-position:  right;
+    width: 20px;
+    height:  25px;
     image: url(./Styles/Icons/arrow_down.png);
-    border-left-width: 1px;
-    border-left-color: darkgray;
-    border-left-style: solid;
+    border-right-width: 1px;
+    border-right-color: darkgray;
+    border-right-style: solid;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
     background-color: #2196f3;
     padding: 5px;
     position: absolute;
-    right: 25px; /* Position the down button to the left of the up button */
+    right: 30px; /* Position the down button to the left of the up button */
 }

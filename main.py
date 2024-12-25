@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from PyQt5.QtWidgets import (QApplication,QMainWindow,QWidget,QVBoxLayout,QHBoxLayout,QFormLayout,QSpinBox,QDoubleSpinBox,
+from PyQt5.QtWidgets import (QSizePolicy,QSpacerItem, QApplication,QMainWindow,QWidget,QVBoxLayout,QHBoxLayout,QFormLayout,QSpinBox,QDoubleSpinBox,
 QComboBox,QPushButton,QSlider,QLabel,QFrame)
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
@@ -43,29 +43,36 @@ class HeatMapWindow(QMainWindow):
         self.heatmap_fig = Figure()
         self.heatmap_canvas = FigureCanvas(self.heatmap_fig)
         heatmap_layout.addWidget(self.heatmap_canvas)
+        self.heatmap_fig.subplots_adjust(left=-0.35, right=1, top=0.9, bottom=0.1)
 
         profile_frame = QFrame()
         profile_frame.setObjectName("profile_frame")
         profile_frame.setMinimumWidth(800)
         profile_layout = QHBoxLayout()
+        profile_layout.setContentsMargins(0, 0, 0, 0)  # Remove padding
+        profile_layout.setSpacing(0)  # Remove spacing
         profile_frame.setLayout(profile_layout)
+
         self.profile_fig = Figure()
         self.profile_canvas = FigureCanvas(self.profile_fig)
+        self.profile_canvas.setContentsMargins(0, 0, 0, 0)  # Remove padding from the canvas
         profile_layout.addWidget(self.profile_canvas)
+        # Adjust subplot parameters to reduce padding around the plot area
+        self.profile_fig.subplots_adjust(left=0.1, right=0.9, top=1.5, bottom=-0.5)
 
         # Form layout for inputs
         from_frame = QFrame()
         from_frame.setObjectName("form_frame")
-        form_layout = QFormLayout()
-        form_layout.setSpacing(15)
-        from_frame.setLayout(form_layout)
+        self.form_layout = QFormLayout()
+        self.form_layout.setSpacing(15)
+        from_frame.setLayout(self.form_layout)
         
 
         # Add antenna selector
         self.antenna_selector = QComboBox()
         self.antenna_selector.addItems([f"Antenna {i+1}" for i in range(self.num_antennas)])
         self.antenna_selector.currentIndexChanged.connect(self.update_selected_antenna)
-        form_layout.addRow("Select Antenna:", self.antenna_selector)
+        self.add_labeled_row("Select Antenna:", self.antenna_selector)
 
         # Add position controls (x and y sliders)
         self.x_position_slider = QDoubleSpinBox()
@@ -73,18 +80,19 @@ class HeatMapWindow(QMainWindow):
         self.x_position_slider.setSingleStep(0.1)
         self.x_position_slider.setValue(0)
         self.x_position_slider.valueChanged.connect(self.update_antenna_position)
-        form_layout.addRow("X Position:", self.x_position_slider)
+        # self.form_layout.addRow("X Position:                                                       ", self.x_position_slider)
+        self.add_labeled_row("X Position:", self.x_position_slider)
 
         self.y_position_slider = QDoubleSpinBox()
         self.y_position_slider.setRange(0, 10)
         self.y_position_slider.setSingleStep(0.1)
         self.y_position_slider.setValue(0)
         self.y_position_slider.valueChanged.connect(self.update_antenna_position)
-        form_layout.addRow("Y Position:", self.y_position_slider)
 
+        self.add_labeled_row("Y Position:", self.y_position_slider)
 
         # Number of antennas
-        self.num_antennas_slider = QSlider(Qt.Horizontal)  # Horizontal slider
+        self.num_antennas_slider = QSlider(Qt.Orientation.Horizontal)  # Horizontal slider
         self.num_antennas_slider.setMinimum(1)
         self.num_antennas_slider.setMaximum(10)
         self.num_antennas_slider.setValue(self.num_antennas)  # Set default value
@@ -93,6 +101,7 @@ class HeatMapWindow(QMainWindow):
 
         # Label to display the current value of the slider
         self.num_antennas_label = QLabel(f"{self.num_antennas}")  # Display initial value
+        self.num_antennas_label.setObjectName("label_with_border")
         self.num_antennas_label.setMinimumWidth(50)
         self.num_antennas_label.setAlignment(Qt.AlignCenter)
 
@@ -112,7 +121,7 @@ class HeatMapWindow(QMainWindow):
 
         # form_layout.addRow("Number of Antennas:", self.num_antennas_slider)
         # form_layout.addRow("Selected Antennas:", self.num_antennas_label)
-        form_layout.addRow("Number of Antennas:", num_antennas_layout)
+        self.add_labeled_row("Number of Antennas:", num_antennas_layout)
 
         # Distance between antennas
         self.distance_slider = QSlider(Qt.Horizontal)  # Horizontal slider
@@ -124,6 +133,8 @@ class HeatMapWindow(QMainWindow):
 
         # Label to display the current value of the slider
         self.distance_label = QLabel(f"{self.distance_m}")  # Display initial value
+        self.distance_label.setObjectName("label_with_border")
+        
         self.distance_label.setMinimumWidth(50)
 
         self.distance_label.setAlignment(Qt.AlignCenter)
@@ -141,7 +152,8 @@ class HeatMapWindow(QMainWindow):
         distance_layout.addWidget(self.distance_slider)
         distance_layout.addWidget(self.distance_label)
 
-        form_layout.addRow("Distance between antennas ( λ ):", distance_layout)
+        # self.form_layout.addRow("Distance between antennas ( λ ):                ", distance_layout)
+        self.add_labeled_row("Distance between antennas ( λ ): ", distance_layout)
 
         # Delay between antennas
         self.delay_slider = QSlider(Qt.Horizontal)  # Horizontal slider
@@ -153,6 +165,7 @@ class HeatMapWindow(QMainWindow):
 
         # Label to display the current value of the slider
         self.delay_label = QLabel(f"{self.distance_m}")  # Display initial value
+        self.delay_label.setObjectName("label_with_border")
         self.delay_label.setMinimumWidth(50)
         
         self.delay_label.setAlignment(Qt.AlignCenter)
@@ -164,12 +177,13 @@ class HeatMapWindow(QMainWindow):
         self.delay_slider.valueChanged.connect(self.generate_heatmap_and_profile)  # Update heatmap and profile dynamically
 
         delay_layout = QHBoxLayout()
+        delay_layout.setAlignment(Qt.AlignCenter)
         delay_layout.addWidget(self.delay_slider)
         delay_layout.addWidget(self.delay_label)
 
         # Add slider and label to the form layout
-        form_layout.addRow("Delay between antennas (in degrees):", delay_layout)
-
+        # self.form_layout.addRow("Delay between antennas (in degrees):       ", delay_layout)
+        self.add_labeled_row("Delay between antennas (in degrees): ", delay_layout)
 
         # Frequency of the wave
         self.frequency_spinbox = QDoubleSpinBox()
@@ -177,16 +191,26 @@ class HeatMapWindow(QMainWindow):
         self.frequency_spinbox.setSingleStep(1)
         self.frequency_spinbox.setValue(self.frequency)
         self.frequency_spinbox.setMaximum(1e12)  # Large max value
-        form_layout.addRow("Signal Frequency (Hz):", self.frequency_spinbox)
+        
+        label_frame = QFrame()
+        label_frame.setObjectName("label_frame")
+        label_frame.setMinimumWidth(300)
+        label_layout = QHBoxLayout()
+        label_frame.setLayout(label_layout)
+        label=QLabel("Signal Frequency (Hz):")
+        label_layout.addWidget(label)
+        label_layout.addSpacerItem(QSpacerItem(50, 0, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
+        self.form_layout.addRow(label_frame, self.frequency_spinbox)
 
         # Array geometry type (Linear or Curved)
         self.array_geometry_combo = QComboBox()
         self.array_geometry_combo.addItems(["Linear", "Curved"])
         self.array_geometry_combo.currentTextChanged.connect(self.toggle_curvature_slider)
-        form_layout.addRow("Array Geometry:", self.array_geometry_combo)
+        # self.form_layout.addRow("Array Geometry:                                             ", self.array_geometry_combo)
+        self.add_labeled_row("Array Geometry: ", self.array_geometry_combo)
 
         # Curvature slider
-        self.curvature_slider_label = QLabel("Curvature (0 = Flat):")
+        # self.curvature_slider_label = QLabel("Curvature (0 = Flat):                                      ")
         self.curvature_slider = QSlider(Qt.Horizontal)
         self.curvature_slider.setMinimum(0)
         self.curvature_slider.setMaximum(100)
@@ -195,7 +219,8 @@ class HeatMapWindow(QMainWindow):
         self.curvature_slider.valueChanged.connect(self.update_curvature)
         # self.curvature_slider.valueChanged.connect(self.update_param_limits)
         self.curvature_slider.setDisabled(True)
-        form_layout.addRow(self.curvature_slider_label, self.curvature_slider)
+        # self.form_layout.addRow(self.curvature_slider_label, self.curvature_slider)
+        self.add_labeled_row("Curvature (0 = Flat): ", self.curvature_slider)
 
         # Frequency controls for each antenna
         self.frequency_controls = []
@@ -220,12 +245,12 @@ class HeatMapWindow(QMainWindow):
             H_layout.addWidget(spinbox)
             frequency_layout.addLayout(H_layout)
 
-        form_layout.addRow("Frequencies:", frequency_frame)
+        self.form_layout.addRow("Frequencies:", frequency_frame)
         
         # Generate button
         generate_button = QPushButton("Update Heatmap and Beam Profile")
         generate_button.clicked.connect(self.generate_heatmap_and_profile)
-        form_layout.addWidget(generate_button)
+        self.form_layout.addWidget(generate_button)
 
         layout.addWidget(from_frame)
 
@@ -297,6 +322,20 @@ class HeatMapWindow(QMainWindow):
         # Regenerate heatmap and profile
         self.generate_heatmap_and_profile()
         '''
+    
+    
+    def add_labeled_row( self,label_text, widget):
+        label_frame = QFrame()
+        label_frame.setObjectName("label_frame")
+        label_frame.setMinimumWidth(300)
+        label_frame.setMaximumWidth(300)
+        
+        label_layout = QHBoxLayout()
+        label_frame.setLayout(label_layout)
+        label = QLabel(label_text)
+        label_layout.addWidget(label)
+        label_layout.addSpacerItem(QSpacerItem(50, 0, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
+        self.form_layout.addRow(label_frame, widget)
 
     def update_selected_antenna(self):
         """Update sliders to reflect the selected antenna's current position."""
