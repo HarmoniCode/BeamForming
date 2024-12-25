@@ -8,6 +8,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 import sys
 import logging
+import json
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -111,6 +112,7 @@ class HeatMapWindow(QMainWindow):
         self.num_antennas_slider.valueChanged.connect(
             lambda value: self.num_antennas_label.setText(f"{value}")
         )
+        self.num_antennas_slider.valueChanged.connect(self.generate_heatmap_and_profile)  # Update heatmap and profile dynamically
 
         num_antennas_layout = QHBoxLayout()
         num_antennas_layout.addWidget(self.num_antennas_slider)
@@ -133,13 +135,14 @@ class HeatMapWindow(QMainWindow):
 
         # Connect slider value change signal to update the label
         self.distance_slider.valueChanged.connect(
-            lambda value: self.distance_label.setText(f"{value}")
+            lambda value: self.distance_label.setText(f"{value}/λ")
         )
+        self.distance_slider.valueChanged.connect(self.generate_heatmap_and_profile)  # Update heatmap and profile dynamically
 
         distance_layout = QHBoxLayout()
         distance_layout.addWidget(self.distance_slider)
         distance_layout.addWidget(self.distance_label)
-        self.add_labeled_row("Distance between antennas ( λ ): ", distance_layout)
+        self.add_labeled_row("Distance between antennas: ", distance_layout)
 
         # Delay between antennas
         self.delay_slider = QSlider(Qt.Horizontal)  # Horizontal slider
@@ -167,21 +170,23 @@ class HeatMapWindow(QMainWindow):
         delay_layout.addWidget(self.delay_label)
         self.add_labeled_row("Delay between antennas (in degrees): ", delay_layout)
 
-        # Frequency of the wave
+        # Frequency of All Antennas
         self.frequency_spinbox = QDoubleSpinBox()
         self.frequency_spinbox.setSingleStep(1)
         self.frequency_spinbox.setValue(self.frequency)
         self.frequency_spinbox.setMaximum(1e12)  # Large max value
+        self.frequency_spinbox.valueChanged.connect(self.generate_heatmap_and_profile)  # Update heatmap and profile dynamically
 
-        label_frame = QFrame()
-        label_frame.setObjectName("label_frame")
-        label_frame.setMinimumWidth(300)
-        label_layout = QHBoxLayout()
-        label_frame.setLayout(label_layout)
-        label = QLabel("Signal Frequency (Hz):")
-        label_layout.addWidget(label)
-        label_layout.addSpacerItem(QSpacerItem(50, 0, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
-        self.form_layout.addRow(label_frame, self.frequency_spinbox)
+        # label_frame = QFrame()
+        # label_frame.setObjectName("label_frame")
+        # label_frame.setMinimumWidth(300)
+        # label_layout = QHBoxLayout()
+        # label_frame.setLayout(label_layout)
+        # label = QLabel("Signal Frequency (Hz):")
+        # label_layout.addWidget(label)
+        # label_layout.addSpacerItem(QSpacerItem(50, 0, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
+        # self.form_layout.addRow(label_frame, self.frequency_spinbox)
+        
 
         # Array geometry type (Linear or Curved)
         self.array_geometry_combo = QComboBox()
@@ -196,6 +201,7 @@ class HeatMapWindow(QMainWindow):
         self.curvature_slider.setValue(0)
         self.curvature_slider.setTickInterval(10)
         self.curvature_slider.valueChanged.connect(self.update_curvature)
+        self.curvature_slider.valueChanged.connect(self.generate_heatmap_and_profile)  # Update heatmap and profile dynamically
         self.curvature_slider.setDisabled(True)
         self.add_labeled_row("Curvature (0 = Flat): ", self.curvature_slider)
 
@@ -416,6 +422,26 @@ class HeatMapWindow(QMainWindow):
         # ax.set_title("Beam Profile)")
         # ax.legend()
         self.profile_canvas.draw()
+
+    # def load_data_from_json(file_path):
+    #     with open(file_path, 'r') as file:
+    #         data = json.load(file)
+
+    #     # Store each value in a variable
+    #     num_antennas = data["num_antennas"]
+    #     distance_m = data["distance_m"]
+    #     delay_deg = data["delay_deg"]
+    #     frequency = data["frequency"]
+    #     array_geometry = data["array_geometry"]
+    #     curvature = data["curvature"]
+
+        
+        # # You can now use these variables later
+        # return num_antennas, distance_m, delay_deg, frequency, array_geometry, curvature
+    
+    # Example usage
+    # file_path = 'scenarios/ultrasound_scenario.json'  # Replace with the actual path to your JSON file
+    # num_antennas, distance_m, delay_deg, frequency, array_geometry, curvature = load_data_from_json(file_path)
         
     def generate_heatmap_and_profile(self):
         logging.debug("Generating heatmap and profile")
