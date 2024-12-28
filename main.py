@@ -27,14 +27,14 @@ import json
 
 # Configure logging
 logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
 
 class HeatMapWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        logging.debug("Initializing HeatMapWindow")
+        logging.info("Initializing HeatMapWindow")
         self.setWindowTitle("Beamforming Simulator")
         self.setGeometry(100, 100, 1200, 800)
 
@@ -54,7 +54,7 @@ class HeatMapWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        logging.debug("Setting up UI")
+        logging.info("Setting up UI")
         # Central widget for the window
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
@@ -323,7 +323,7 @@ class HeatMapWindow(QMainWindow):
         self.generate_heatmap_and_profile()
 
     def add_labeled_row(self, label_text, widget):
-        logging.debug(f"Adding labeled row: {label_text}")
+        logging.info(f"Adding labeled row: {label_text}")
         label_frame = QFrame()
         label_frame.setObjectName("label_frame")
         label_frame.setMinimumWidth(300)
@@ -339,13 +339,13 @@ class HeatMapWindow(QMainWindow):
         self.form_layout.addRow(label_frame, widget)
 
     def update_selected_antenna(self):
-        logging.debug("Updating selected antenna")
+        logging.info("Updating selected antenna")
         index = self.antenna_selector.currentIndex()
         self.x_position_slider.setValue(self.antenna_positions[index])
         self.y_position_slider.setValue(self.y_positions[index])
 
     def update_antenna_position(self):
-        logging.debug("Updating antenna position")
+        logging.info("Updating antenna position")
         index = self.antenna_selector.currentIndex()
         self.antenna_positions[index] = self.x_position_slider.value()
         self.y_positions[index] = self.y_position_slider.value()
@@ -353,11 +353,11 @@ class HeatMapWindow(QMainWindow):
         self.generate_heatmap_and_profile()
 
     def update_antenna_frequency(self, index, value):
-        logging.debug(f"Updating frequency of antenna {index + 1} to {value} Hz")
+        logging.info(f"Updating frequency of antenna {index + 1} to {value} Hz")
         self.antenna_frequencies[index] = value
 
     def toggle_curvature_slider(self, value):
-        logging.debug(f"Toggling curvature slider: {value}")
+        logging.info(f"Toggling curvature slider: {value}")
         if value == "Curved":
             self.curvature_slider.setDisabled(False)
         else:
@@ -365,11 +365,11 @@ class HeatMapWindow(QMainWindow):
             self.curvature = 0.0  # Reset curvature
 
     def update_curvature(self, value):
-        logging.debug(f"Updating curvature to {value}")
+        logging.info(f"Updating curvature to {value}")
         self.curvature = value / 100  # Normalize curvature value
 
     def plot_heatmap(self):
-        logging.debug("Plotting heatmap")
+        logging.info("Plotting heatmap")
         # Clear the previous figure
         self.heatmap_fig.clear()
 
@@ -464,7 +464,7 @@ class HeatMapWindow(QMainWindow):
         self.heatmap_canvas.draw()
 
     def plot_beam_profile(self):
-        logging.debug("Plotting beam profile")
+        logging.info("Plotting beam profile")
         # Retrieve user inputs
         num_antennas = self.num_antennas_slider.value()
         distance_m = self.distance_slider.value()
@@ -552,7 +552,7 @@ class HeatMapWindow(QMainWindow):
     # num_antennas, distance_m, delay_deg, frequency, array_geometry, curvature = load_data_from_json(file_path)
 
     def generate_heatmap_and_profile(self):
-        logging.debug("Generating heatmap and profile")
+        logging.info("Generating heatmap and profile")
         self.plot_heatmap()
         self.plot_beam_profile()
 
