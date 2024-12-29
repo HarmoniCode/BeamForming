@@ -4,10 +4,5 @@
     "delay_deg": 0,
     "array_geometry": "Linear",
     "curvature": 0.0,
-    "self.antenna_frequencies[0]": 100.00,
-    "self.antenna_frequencies[1]": 1.00,
-    "self.antenna_frequencies[2]": 1.00,
-    "self.antenna_frequencies[3]": 1.00,
-    "self.antenna_frequencies[4]": 1.00,
-    "self.antenna_frequencies[5]": 100.00
+    "frequencies": [100.00, 1.00, 1.00, 1.00, 1.00, 100.00]
 }

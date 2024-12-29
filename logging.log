@@ -1,0 +1,219 @@
+2024-12-29 00:14:12,212 - INFO - Initializing HeatMapWindow
+2024-12-29 00:14:12,212 - INFO - Setting up UI
+2024-12-29 00:14:12,223 - INFO - Adding labeled row: Select Antenna:
+2024-12-29 00:14:12,363 - INFO - Adding labeled row: X Position:
+2024-12-29 00:14:12,363 - INFO - Adding labeled row: Y Position:
+2024-12-29 00:14:12,363 - INFO - Adding labeled row: Number of Antennas:
+2024-12-29 00:14:12,363 - INFO - Adding labeled row: Distance between antennas: 
+2024-12-29 00:14:12,363 - INFO - Adding labeled row: Delay between antennas (in degrees): 
+2024-12-29 00:14:12,363 - INFO - Adding labeled row: Array Geometry: 
+2024-12-29 00:14:12,363 - INFO - Adding labeled row: Curvature (0 = Flat): 
+2024-12-29 00:14:12,380 - INFO - Generating heatmap and profile
+2024-12-29 00:14:12,380 - INFO - Plotting heatmap
+2024-12-29 00:14:12,527 - INFO - Plotting beam profile
+2024-12-29 00:14:19,548 - INFO - Updating selected antenna
+2024-12-29 00:14:19,548 - INFO - Updating antenna position
+2024-12-29 00:14:19,548 - INFO - Generating heatmap and profile
+2024-12-29 00:14:19,548 - INFO - Plotting heatmap
+2024-12-29 00:14:19,699 - INFO - Plotting beam profile
+2024-12-29 00:14:20,830 - INFO - Updating antenna position
+2024-12-29 00:14:20,830 - INFO - Generating heatmap and profile
+2024-12-29 00:14:20,830 - INFO - Plotting heatmap
+2024-12-29 00:14:20,980 - INFO - Plotting beam profile
+2024-12-29 00:14:21,046 - INFO - Updating antenna position
+2024-12-29 00:14:21,046 - INFO - Generating heatmap and profile
+2024-12-29 00:14:21,046 - INFO - Plotting heatmap
+2024-12-29 00:14:21,178 - INFO - Plotting beam profile
+2024-12-29 00:14:21,246 - INFO - Updating antenna position
+2024-12-29 00:14:21,246 - INFO - Generating heatmap and profile
+2024-12-29 00:14:21,246 - INFO - Plotting heatmap
+2024-12-29 00:14:21,377 - INFO - Plotting beam profile
+2024-12-29 00:14:22,297 - INFO - Updating antenna position
+2024-12-29 00:14:22,297 - INFO - Generating heatmap and profile
+2024-12-29 00:14:22,297 - INFO - Plotting heatmap
+2024-12-29 00:14:22,440 - INFO - Plotting beam profile
+2024-12-29 00:14:22,495 - INFO - Updating antenna position
+2024-12-29 00:14:22,495 - INFO - Generating heatmap and profile
+2024-12-29 00:14:22,495 - INFO - Plotting heatmap
+2024-12-29 00:14:22,629 - INFO - Plotting beam profile
+2024-12-29 00:14:22,747 - INFO - Updating antenna position
+2024-12-29 00:14:22,747 - INFO - Generating heatmap and profile
+2024-12-29 00:14:22,747 - INFO - Plotting heatmap
+2024-12-29 00:14:22,894 - INFO - Plotting beam profile
+2024-12-29 00:14:22,988 - INFO - Updating antenna position
+2024-12-29 00:14:22,988 - INFO - Generating heatmap and profile
+2024-12-29 00:14:22,988 - INFO - Plotting heatmap
+2024-12-29 00:14:23,127 - INFO - Plotting beam profile
+2024-12-29 00:14:23,190 - INFO - Updating antenna position
+2024-12-29 00:14:23,190 - INFO - Generating heatmap and profile
+2024-12-29 00:14:23,190 - INFO - Plotting heatmap
+2024-12-29 00:14:23,328 - INFO - Plotting beam profile
+2024-12-29 00:14:23,997 - INFO - Updating antenna position
+2024-12-29 00:14:24,012 - INFO - Generating heatmap and profile
+2024-12-29 00:14:24,012 - INFO - Plotting heatmap
+2024-12-29 00:14:24,149 - INFO - Plotting beam profile
+2024-12-29 00:14:24,208 - INFO - Updating antenna position
+2024-12-29 00:14:24,208 - INFO - Generating heatmap and profile
+2024-12-29 00:14:24,208 - INFO - Plotting heatmap
+2024-12-29 00:14:24,361 - INFO - Plotting beam profile
+2024-12-29 00:14:24,423 - INFO - Updating antenna position
+2024-12-29 00:14:24,423 - INFO - Generating heatmap and profile
+2024-12-29 00:14:24,423 - INFO - Plotting heatmap
+2024-12-29 00:14:24,561 - INFO - Plotting beam profile
+2024-12-29 00:14:24,623 - INFO - Updating antenna position
+2024-12-29 00:14:24,623 - INFO - Generating heatmap and profile
+2024-12-29 00:14:24,623 - INFO - Plotting heatmap
+2024-12-29 00:14:24,762 - INFO - Plotting beam profile
+2024-12-29 00:14:24,824 - INFO - Updating antenna position
+2024-12-29 00:14:24,824 - INFO - Generating heatmap and profile
+2024-12-29 00:14:24,824 - INFO - Plotting heatmap
+2024-12-29 00:14:24,961 - INFO - Plotting beam profile
+2024-12-29 00:14:25,024 - INFO - Updating antenna position
+2024-12-29 00:14:25,024 - INFO - Generating heatmap and profile
+2024-12-29 00:14:25,024 - INFO - Plotting heatmap
+2024-12-29 00:14:25,161 - INFO - Plotting beam profile
+2024-12-29 00:14:25,223 - INFO - Updating antenna position
+2024-12-29 00:14:25,223 - INFO - Generating heatmap and profile
+2024-12-29 00:14:25,223 - INFO - Plotting heatmap
+2024-12-29 00:14:25,409 - INFO - Plotting beam profile
+2024-12-29 00:14:26,613 - INFO - Toggling curvature slider: Curved
+2024-12-29 00:14:26,613 - INFO - Resetting antenna positions
+2024-12-29 00:14:26,613 - INFO - Updating antenna position
+2024-12-29 00:14:26,613 - INFO - Generating heatmap and profile
+2024-12-29 00:14:26,613 - INFO - Plotting heatmap
+2024-12-29 00:14:26,763 - INFO - Plotting beam profile
+2024-12-29 00:14:26,829 - INFO - Updating antenna position
+2024-12-29 00:14:26,829 - INFO - Generating heatmap and profile
+2024-12-29 00:14:26,829 - INFO - Plotting heatmap
+2024-12-29 00:14:26,961 - INFO - Plotting beam profile
+2024-12-29 00:14:27,024 - INFO - Generating heatmap and profile
+2024-12-29 00:14:27,024 - INFO - Plotting heatmap
+2024-12-29 00:14:27,166 - INFO - Plotting beam profile
+2024-12-29 00:14:30,134 - INFO - Updating curvature to 1
+2024-12-29 00:14:30,134 - INFO - Generating heatmap and profile
+2024-12-29 00:14:30,134 - INFO - Plotting heatmap
+2024-12-29 00:14:30,264 - INFO - Plotting beam profile
+2024-12-29 00:14:30,323 - INFO - Updating curvature to 26
+2024-12-29 00:14:30,323 - INFO - Generating heatmap and profile
+2024-12-29 00:14:30,323 - INFO - Plotting heatmap
+2024-12-29 00:14:30,464 - INFO - Plotting beam profile
+2024-12-29 00:14:30,542 - INFO - Updating curvature to 37
+2024-12-29 00:14:30,542 - INFO - Generating heatmap and profile
+2024-12-29 00:14:30,542 - INFO - Plotting heatmap
+2024-12-29 00:14:30,684 - INFO - Plotting beam profile
+2024-12-29 00:14:30,746 - INFO - Updating curvature to 19
+2024-12-29 00:14:30,746 - INFO - Generating heatmap and profile
+2024-12-29 00:14:30,746 - INFO - Plotting heatmap
+2024-12-29 00:14:30,888 - INFO - Plotting beam profile
+2024-12-29 00:14:30,950 - INFO - Updating curvature to 2
+2024-12-29 00:14:30,950 - INFO - Generating heatmap and profile
+2024-12-29 00:14:30,950 - INFO - Plotting heatmap
+2024-12-29 00:14:31,076 - INFO - Plotting beam profile
+2024-12-29 00:14:31,170 - INFO - Updating curvature to 0
+2024-12-29 00:14:31,170 - INFO - Generating heatmap and profile
+2024-12-29 00:14:31,170 - INFO - Plotting heatmap
+2024-12-29 00:14:31,312 - INFO - Plotting beam profile
+2024-12-29 00:14:31,567 - INFO - Updating curvature to 1
+2024-12-29 00:14:31,567 - INFO - Generating heatmap and profile
+2024-12-29 00:14:31,567 - INFO - Plotting heatmap
+2024-12-29 00:14:31,704 - INFO - Plotting beam profile
+2024-12-29 00:14:31,767 - INFO - Updating curvature to 21
+2024-12-29 00:14:31,767 - INFO - Generating heatmap and profile
+2024-12-29 00:14:31,767 - INFO - Plotting heatmap
+2024-12-29 00:14:31,908 - INFO - Plotting beam profile
+2024-12-29 00:14:31,987 - INFO - Updating curvature to 20
+2024-12-29 00:14:31,987 - INFO - Generating heatmap and profile
+2024-12-29 00:14:31,987 - INFO - Plotting heatmap
+2024-12-29 00:14:32,112 - INFO - Plotting beam profile
+2024-12-29 00:14:32,191 - INFO - Updating curvature to 0
+2024-12-29 00:14:32,191 - INFO - Generating heatmap and profile
+2024-12-29 00:14:32,191 - INFO - Plotting heatmap
+2024-12-29 00:14:32,332 - INFO - Plotting beam profile
+2024-12-29 00:14:34,089 - INFO - Toggling curvature slider: Linear
+2024-12-29 00:14:34,089 - INFO - Generating heatmap and profile
+2024-12-29 00:14:34,089 - INFO - Plotting heatmap
+2024-12-29 00:14:34,230 - INFO - Plotting beam profile
+2024-12-29 00:14:35,703 - INFO - Updating selected antenna
+2024-12-29 00:14:35,703 - INFO - Updating antenna position
+2024-12-29 00:14:35,703 - INFO - Generating heatmap and profile
+2024-12-29 00:14:35,703 - INFO - Plotting heatmap
+2024-12-29 00:14:35,847 - INFO - Plotting beam profile
+2024-12-29 00:14:38,291 - INFO - Updating antenna position
+2024-12-29 00:14:38,291 - INFO - Generating heatmap and profile
+2024-12-29 00:14:38,291 - INFO - Plotting heatmap
+2024-12-29 00:14:38,431 - INFO - Plotting beam profile
+2024-12-29 00:14:38,496 - INFO - Updating antenna position
+2024-12-29 00:14:38,496 - INFO - Generating heatmap and profile
+2024-12-29 00:14:38,496 - INFO - Plotting heatmap
+2024-12-29 00:14:38,676 - INFO - Plotting beam profile
+2024-12-29 00:14:38,723 - INFO - Updating antenna position
+2024-12-29 00:14:38,723 - INFO - Generating heatmap and profile
+2024-12-29 00:14:38,723 - INFO - Plotting heatmap
+2024-12-29 00:14:38,877 - INFO - Plotting beam profile
+2024-12-29 00:14:38,925 - INFO - Updating antenna position
+2024-12-29 00:14:38,925 - INFO - Generating heatmap and profile
+2024-12-29 00:14:38,925 - INFO - Plotting heatmap
+2024-12-29 00:14:39,078 - INFO - Plotting beam profile
+2024-12-29 00:14:39,125 - INFO - Updating antenna position
+2024-12-29 00:14:39,125 - INFO - Generating heatmap and profile
+2024-12-29 00:14:39,125 - INFO - Plotting heatmap
+2024-12-29 00:14:39,277 - INFO - Plotting beam profile
+2024-12-29 00:14:41,349 - INFO - Updating selected antenna
+2024-12-29 00:14:41,349 - INFO - Updating antenna position
+2024-12-29 00:14:41,365 - INFO - Generating heatmap and profile
+2024-12-29 00:14:41,365 - INFO - Plotting heatmap
+2024-12-29 00:14:41,497 - INFO - Plotting beam profile
+2024-12-29 00:14:44,480 - INFO - Updating selected antenna
+2024-12-29 00:14:44,480 - INFO - Updating antenna position
+2024-12-29 00:14:44,480 - INFO - Generating heatmap and profile
+2024-12-29 00:14:44,480 - INFO - Plotting heatmap
+2024-12-29 00:14:44,614 - INFO - Plotting beam profile
+2024-12-29 00:14:47,017 - INFO - Toggling curvature slider: Curved
+2024-12-29 00:14:47,017 - INFO - Resetting antenna positions
+2024-12-29 00:14:47,017 - INFO - Updating antenna position
+2024-12-29 00:14:47,017 - INFO - Generating heatmap and profile
+2024-12-29 00:14:47,017 - INFO - Plotting heatmap
+2024-12-29 00:14:47,167 - INFO - Plotting beam profile
+2024-12-29 00:14:47,214 - INFO - Generating heatmap and profile
+2024-12-29 00:14:47,214 - INFO - Plotting heatmap
+2024-12-29 00:14:47,355 - INFO - Plotting beam profile
+2024-12-29 00:14:47,632 - INFO - Updating curvature to 1
+2024-12-29 00:14:47,632 - INFO - Generating heatmap and profile
+2024-12-29 00:14:47,632 - INFO - Plotting heatmap
+2024-12-29 00:14:47,773 - INFO - Plotting beam profile
+2024-12-29 00:14:47,836 - INFO - Updating curvature to 21
+2024-12-29 00:14:47,836 - INFO - Generating heatmap and profile
+2024-12-29 00:14:47,836 - INFO - Plotting heatmap
+2024-12-29 00:14:48,025 - INFO - Plotting beam profile
+2024-12-29 00:14:48,087 - INFO - Updating curvature to 27
+2024-12-29 00:14:48,087 - INFO - Generating heatmap and profile
+2024-12-29 00:14:48,087 - INFO - Plotting heatmap
+2024-12-29 00:14:48,229 - INFO - Plotting beam profile
+2024-12-29 00:14:48,291 - INFO - Updating curvature to 24
+2024-12-29 00:14:48,291 - INFO - Generating heatmap and profile
+2024-12-29 00:14:48,291 - INFO - Plotting heatmap
+2024-12-29 00:14:48,431 - INFO - Plotting beam profile
+2024-12-29 00:14:48,509 - INFO - Updating curvature to 0
+2024-12-29 00:14:48,509 - INFO - Generating heatmap and profile
+2024-12-29 00:14:48,509 - INFO - Plotting heatmap
+2024-12-29 00:14:48,651 - INFO - Plotting beam profile
+2024-12-29 00:14:48,981 - INFO - Updating curvature to 1
+2024-12-29 00:14:48,981 - INFO - Generating heatmap and profile
+2024-12-29 00:14:48,981 - INFO - Plotting heatmap
+2024-12-29 00:14:49,122 - INFO - Plotting beam profile
+2024-12-29 00:14:49,185 - INFO - Updating curvature to 22
+2024-12-29 00:14:49,185 - INFO - Generating heatmap and profile
+2024-12-29 00:14:49,185 - INFO - Plotting heatmap
+2024-12-29 00:14:49,326 - INFO - Plotting beam profile
+2024-12-29 00:14:49,389 - INFO - Updating curvature to 26
+2024-12-29 00:14:49,389 - INFO - Generating heatmap and profile
+2024-12-29 00:14:49,389 - INFO - Plotting heatmap
+2024-12-29 00:14:49,530 - INFO - Plotting beam profile
+2024-12-29 00:14:49,608 - INFO - Updating curvature to 4
+2024-12-29 00:14:49,608 - INFO - Generating heatmap and profile
+2024-12-29 00:14:49,608 - INFO - Plotting heatmap
+2024-12-29 00:14:49,750 - INFO - Plotting beam profile
+2024-12-29 00:14:49,812 - INFO - Updating curvature to 0
+2024-12-29 00:14:49,812 - INFO - Generating heatmap and profile
+2024-12-29 00:14:49,812 - INFO - Plotting heatmap
+2024-12-29 00:14:49,985 - INFO - Plotting beam profile
