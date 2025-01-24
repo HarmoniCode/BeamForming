@@ -1,6 +1,6 @@
 # Beamforming Simulator
 
-![alt text](./Styles/image.png)
+![alt text](./assets/image.png)
 
 This project is a Beamforming Simulator that visualizes the beamforming process using a heatmap and beam profile. The simulator allows users to configure various parameters such as the number of antennas, distance between antennas, delay between antennas, and array geometry.
 
