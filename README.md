@@ -33,8 +33,8 @@ This project is a Beamforming Simulator that visualizes the beamforming process 
 
 1. Clone the repository:
     ```sh
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/HarmoniCode/BeamForming.git
+    cd BeamForming/
     ```
 
 2. Install the required packages:
