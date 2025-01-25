@@ -1,7 +1,12 @@
 # Beamforming Simulator
 
+![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
+![PyQt5](https://img.shields.io/badge/PyQt5-5.15.4-green.svg)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-3.4.3-orange.svg)
+![NumPy](https://img.shields.io/badge/NumPy-1.21.2-yellow.svg)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-(./assets/image.png)
+![alt text](assets/image.png)
 
 This project is a Beamforming Simulator that visualizes the beamforming process using a heatmap and beam profile. The simulator allows users to configure various parameters such as the number of antennas, distance between antennas, delay between antennas, and array geometry.
 
