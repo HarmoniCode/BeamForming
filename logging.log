@@ -1,0 +1,29 @@
+2025-01-25 13:28:35,254 - INFO - Initializing HeatMapWindow
+2025-01-25 13:28:35,254 - INFO - Setting up UI
+2025-01-25 13:28:35,254 - INFO - Adding labeled row: Select Antenna:
+2025-01-25 13:28:35,420 - INFO - Adding labeled row: X Position:
+2025-01-25 13:28:35,420 - INFO - Adding labeled row: Y Position:
+2025-01-25 13:28:35,420 - INFO - Adding labeled row: Number of Antennas:
+2025-01-25 13:28:35,420 - INFO - Adding labeled row: Distance between antennas: 
+2025-01-25 13:28:35,420 - INFO - Adding labeled row: Delay between antennas (in degrees): 
+2025-01-25 13:28:35,420 - INFO - Adding labeled row: Array Geometry: 
+2025-01-25 13:28:35,420 - INFO - Adding labeled row: Curvature (0 = Flat): 
+2025-01-25 13:28:35,420 - INFO - Generating heatmap and profile
+2025-01-25 13:28:35,420 - INFO - Plotting heatmap
+2025-01-25 13:28:35,592 - INFO - Plotting beam profile
+2025-01-25 13:28:37,872 - INFO - Updating frequency of antenna 1 to 2500000000.0 Hz
+2025-01-25 13:28:37,872 - INFO - Updating frequency of antenna 2 to 2500000000.0 Hz
+2025-01-25 13:28:37,872 - INFO - Updating frequency of antenna 3 to 2500000000.0 Hz
+2025-01-25 13:28:37,872 - INFO - Updating frequency of antenna 4 to 2500000000.0 Hz
+2025-01-25 13:28:37,872 - INFO - Generating heatmap and profile
+2025-01-25 13:28:37,872 - INFO - Plotting heatmap
+2025-01-25 13:28:37,998 - INFO - Plotting beam profile
+2025-01-25 13:28:38,061 - INFO - Generating heatmap and profile
+2025-01-25 13:28:38,061 - INFO - Plotting heatmap
+2025-01-25 13:28:38,197 - INFO - Plotting beam profile
+2025-01-25 13:28:38,265 - INFO - Generating heatmap and profile
+2025-01-25 13:28:38,265 - INFO - Plotting heatmap
+2025-01-25 13:28:38,391 - INFO - Plotting beam profile
+2025-01-25 13:28:38,454 - INFO - Generating heatmap and profile
+2025-01-25 13:28:38,454 - INFO - Plotting heatmap
+2025-01-25 13:28:38,586 - INFO - Plotting beam profile

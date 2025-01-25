@@ -1,0 +1,163 @@
+/* QFrame{
+    border: 1px solid #000;
+} */
+
+* {
+  font-family: "Arial";
+  font-size: 14px;
+  background: rgb(223, 227, 229);
+}
+
+QFrame#heatmap_frame,
+#profile_frame,
+#form_frame {
+  border: 2px solid #2196f3;
+  background: white;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+QFrame#form_frame{
+    padding: 10px;
+    background: white
+}
+
+QFrame#label_frame{
+    background-color: white;
+    border-right: 3px solid #2196f3;
+}
+
+QFrame#frequency_frame{
+    border: 2px solid #2196f3;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+QLabel {
+  color: #000;
+  font-weight: bold;
+}
+
+QLabel#frequency_label{
+    font-size: 13px;
+    padding-left: 5px;
+}
+
+QLabel#label_with_border{
+    border: 1px solid rgb(4, 147, 208);
+}
+
+QPushButton {
+  background-color: rgb(4, 147, 208);
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+QSlider {
+  background-color: transparent;
+}
+
+QSlider::handle:horizontal {
+  background: qlineargradient(
+    x1: 0,
+    y1: 0,
+    x2: 1,
+    y2: 1,
+    stop: 0 #b5b5b5,
+    stop: 1 #8f8f8f
+  );
+  border: 1px solid #5c5c5c;
+  width: 18px;
+  margin: -2px 0;
+  border-radius: 3px;
+}
+
+QLabel {
+  /* border: 1px solid rgb(67, 173, 219); */
+  background-color: white;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+QComboBox {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 9px;
+  font-size: 12px;
+  height:  15px;
+  font-weight: bold;
+}
+QComboBox::drop-down {
+  subcontrol-origin: padding;
+  subcontrol-position: top right;
+  width: 25px;
+  border-left-width: 1px;
+  border-left-color: darkgray;
+  border-left-style: solid;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background-color: #2196f3;
+  padding: 5px;
+}
+QComboBox::down-arrow {
+  image: url(./Styles/Icons/arrow_down.png);
+  /* make image fitting */
+  width: 15px;
+  height: 15px;
+}
+QComboBox QAbstractItemView {
+  selection-background-color: #2196f3;
+  font-size: 12px;
+}
+
+
+QDoubleSpinBox{
+    border: 1px solid #8f8e8e;
+    border-radius: 5px;
+    padding: 9px;
+    font-size: 12px;
+    height: 15px;
+    font-weight: bold;
+}
+
+QDoubleSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position:  right;
+    width: 20px;
+    height:  25px;
+    image: url(./Styles/Icons/arrow_up.png);
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #2196f3;
+    padding: 5px;
+}
+
+QDoubleSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position:  right;
+    width: 20px;
+    height:  25px;
+    image: url(./Styles/Icons/arrow_down.png);
+    border-right-width: 1px;
+    border-right-color: darkgray;
+    border-right-style: solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #2196f3;
+    padding: 5px;
+    position: absolute;
+    right: 30px; /* Position the down button to the left of the up button */
+}

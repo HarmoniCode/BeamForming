@@ -1,0 +1,8 @@
+{
+    "num_antennas": 7,
+    "distance_m": 4,
+    "delay_deg": 0,
+    "frequencies": [1000000.00, 1000000.00, 1000000.00, 1000000.00, 1000000.00, 1000000.00, 1000000.00],
+    "array_geometry": "Downward Curved",
+    "curvature": 12
+}
