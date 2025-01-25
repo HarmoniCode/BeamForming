@@ -1,8 +1,8 @@
 {
-    "num_antennas": 6,
+    "num_antennas": 4,
     "distance_m": 1,
-    "delay_deg": 0,
+    "delay_deg": 180,
     "array_geometry": "Linear",
-    "curvature": 0.0,
-    "frequencies": [100.00, 1.00, 1.00, 1.00, 1.00, 100.00]
+    "curvature": 0,
+    "frequencies": [2500000000.00, 2500000000.00, 2500000000.00, 2500000000.00]
 }

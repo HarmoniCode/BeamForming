@@ -41,7 +41,7 @@ class HeatMapWindow(QMainWindow):
 
         # Initialize default values
         self.num_antennas = 10
-        self.distance_m = 2  # Distance in meters -> 1/2 wavelength
+        self.distance_m = 2  # (1/Distance) * wavelength
         self.delay_deg = 0  # Delay in degrees
         self.frequency = 100  # Default: 100 Hz
         self.propagation_speed = 100  # Default: Speed of light in m/s
@@ -180,7 +180,7 @@ class HeatMapWindow(QMainWindow):
         # Distance between antennas
         self.distance_slider = QSlider(Qt.Horizontal)  
         self.distance_slider.setMinimum(1)
-        self.distance_slider.setMaximum(10)
+        self.distance_slider.setMaximum(20)
         self.distance_slider.setValue(self.distance_m)  # Set default value
         self.distance_slider.setTickInterval(1)  
         self.distance_slider.setTickPosition(
@@ -240,7 +240,7 @@ class HeatMapWindow(QMainWindow):
         self.frequency_spinbox = QDoubleSpinBox()
         self.frequency_spinbox.setSingleStep(1)
         self.frequency_spinbox.setValue(self.frequency)
-        self.frequency_spinbox.setMaximum(1e12)  # Large max value
+        self.frequency_spinbox.setMaximum(1e20)  # Large max value
         self.frequency_spinbox.valueChanged.connect(
             self.generate_heatmap_and_profile
         )  # Update heatmap and profile dynamically
@@ -257,7 +257,7 @@ class HeatMapWindow(QMainWindow):
 
         # Array geometry type (Linear or Curved)
         self.array_geometry_combo = QComboBox()
-        self.array_geometry_combo.addItems(["Linear", "Curved"])
+        self.array_geometry_combo.addItems(["Linear", "Upward Curved", "Downward Curved"])
         self.array_geometry_combo.currentTextChanged.connect(
             self.toggle_curvature_slider
         )
@@ -289,7 +289,7 @@ class HeatMapWindow(QMainWindow):
             spinbox = QDoubleSpinBox()
             spinbox.setValue(self.frequency)  # Default frequency
             spinbox.setSingleStep(1)
-            spinbox.setMaximum(1e12)
+            spinbox.setMaximum(1e20)
             spinbox.setMinimum(1)
             spinbox.valueChanged.connect(
                 lambda value, idx=i: self.update_antenna_frequency(idx, value)
@@ -321,7 +321,7 @@ class HeatMapWindow(QMainWindow):
         # Generate initial heatmap and beam profile
         self.generate_heatmap_and_profile()
 
-    def disable_antenna_selector_item(self):
+    def disable_antenna_selector_item(self): 
         model = self.antenna_selector.model()
 
         for index in range(len(self.frequency_controls)):
@@ -350,22 +350,27 @@ class HeatMapWindow(QMainWindow):
 
         if file_path == 'scenarios/5g_scenario.json':
             frequencies = data.get("frequencies", [])
-
             for i, frequency in enumerate(frequencies):
                 self.frequency_controls[i].setValue(frequency)
-    
-        else:
-            frequency = data["frequency"]
-            for i in range(len(self.frequency_controls)):
-                self.frequency_controls[i].setValue(data["frequency"])
-            self.frequency_spinbox.setValue(frequency)
+            self.curvature_slider.setDisabled(True)
 
+        elif file_path == 'scenarios/ultrasound_scenario.json':
+            frequencies = data.get("frequencies", [])
+            for i, frequency in enumerate(frequencies):
+                self.frequency_controls[i].setValue(frequency)
+            self.curvature_slider.setDisabled(False)
+    
+        elif file_path == 'scenarios/tumor_ablation_scenario.json':
+            frequencies = data.get("frequencies", [])
+            for i, frequency in enumerate(frequencies):
+                self.frequency_controls[i].setValue(frequency)
+            self.curvature_slider.setDisabled(False)
+        
+        self.array_geometry_combo.setCurrentText(array_geometry)
+        self.curvature_slider.setValue(curvature)
         self.num_antennas_slider.setValue(num_antennas)
         self.distance_slider.setValue(distance)
         self.delay_slider.setValue(delay)
-        # self.frequency_spinbox.setValue(frequency)
-        # self.array_geometry_combo.setItemText(array_geometry)
-        # self.curvature_slider.setValue(curvature)
 
         self.generate_heatmap_and_profile()
 
@@ -417,7 +422,7 @@ class HeatMapWindow(QMainWindow):
 
     def toggle_curvature_slider(self, value):
         logging.info(f"Toggling curvature slider: {value}")
-        if value == "Curved":
+        if value == "Upward Curved" or value == "Downward Curved":
             self.curvature_slider.setDisabled(False)
             self.antenna_selector.setDisabled(True)
             self.x_position_slider.setDisabled(True)
@@ -448,7 +453,8 @@ class HeatMapWindow(QMainWindow):
         num_antennas = self.num_antennas_slider.value()
         distance_m = self.distance_slider.value()
         delay_deg = self.delay_slider.value()
-        frequency = self.frequency_spinbox.value()
+        # frequency = self.frequency_spinbox.value()
+        frequency = max(self.antenna_frequencies)
         speed = self.propagation_speed
         array_geometry = self.array_geometry_combo.currentText()
 
@@ -480,11 +486,15 @@ class HeatMapWindow(QMainWindow):
                 num_antennas,
             )
 
-            if array_geometry == "Curved":
+            if array_geometry == "Upward Curved":
                 curvature = self.curvature
-                self.y_positions = 0.4 * np.max(self.Y) + curvature * (
+                self.y_positions = 0.01 * np.max(self.Y) + curvature * (
                     self.antenna_positions**2
-                )  # Change Y positions only
+                )  # baseline Y-offset for all antennas + quadratic term which creates the parabolic curve
+            elif array_geometry == "Downward Curved":
+                curvature = self.curvature
+                center_x_value = 0.00
+                self.y_positions = 0.01 * np.max(self.Y) + curvature * ((center_x_value - self.antenna_positions)**2)
             else:
                 self.y_positions = np.full_like(
                     self.antenna_positions, 0
@@ -498,6 +508,9 @@ class HeatMapWindow(QMainWindow):
             self.X
         )  # a 2D array that contains the calculated wave amplitude values for each point on the grid
 
+
+        max_frequency = max(self.antenna_frequencies)
+
         # Update the loop in the plot_heatmap method to use the individual frequencies:
         for i, (x_pos, y_pos) in enumerate(
             zip(self.antenna_positions, self.y_positions)
@@ -505,14 +518,30 @@ class HeatMapWindow(QMainWindow):
             frequency = self.antenna_frequencies[i]
             wavelength = self.propagation_speed / frequency
             k = 2 * np.pi / wavelength
+
+            # Normalize contribution based on frequency relative to max frequency
+            frequency_scaling = frequency / max_frequency
+
             R = np.sqrt((self.X - x_pos) ** 2 + (self.Y - y_pos) ** 2)
             phase_delay = -i * delay_rad
 
-            self.Waves_Sum += np.sin(k * R + phase_delay) # Waves_Sum ->previously called Z<-
+            # self.Waves_Sum += np.sin(k * R + phase_delay) # Waves_Sum ->previously called Z<-
+            self.Waves_Sum += frequency_scaling * np.sin(k * R + phase_delay)
+
+
+        # Calculate wave amplitude with scaling
+        Waves_Sum = np.abs(self.Waves_Sum)  # Take absolute value
+        
+        # Apply logarithmic scaling
+        Waves_Sum_log = np.log1p(Waves_Sum)  # log1p prevents issues with zero values
+        
+        # Normalize to [0, 1] range
+        Waves_Sum_normalized = (Waves_Sum_log - Waves_Sum_log.min()) / (Waves_Sum_log.max() - Waves_Sum_log.min())
 
         # Plot heatmap
         heatmap = ax.imshow(
-            self.Waves_Sum, cmap="gray", extent=[-extent, extent, 0, 20], origin="lower"
+            Waves_Sum_normalized, cmap="coolwarm", extent=[-extent, extent, 0, 20], origin="lower", vmin=-1, 
+        vmax=1 #, interpolation="gaussian"
         )  # Displays the wave pattern (self.Waves_Sum) as a grayscale image.
         self.heatmap_fig.colorbar(
             heatmap, ax=ax, label="Intensity"
@@ -538,17 +567,19 @@ class HeatMapWindow(QMainWindow):
         distance_m = self.distance_slider.value()
         delay_deg = self.delay_slider.value()
         delay_rad = np.deg2rad(delay_deg)
-        frequency = self.frequency_spinbox.value()
+        # frequency = self.frequency_spinbox.value()
+        frequency = max(self.antenna_frequencies)
         speed = self.propagation_speed
+        # distance_lambda = (1 / distance_m) * wavelength
 
         self.profile_fig.clear()
 
         # Calculate wave properties
         wavelength = speed / frequency  # λ = propagation speed / f
-        if distance_m != 0:
-            distance_lambda = (1 / distance_m) * wavelength  # Distance in wavelengths
-        else:
-            distance_lambda = 0
+        # if distance_m != 0:
+        #     distance_lambda = (1 / distance_m) * wavelength  # Distance in wavelengths
+        # else:
+        #     distance_lambda = 0
         k = 2 * np.pi / wavelength  # Wavenumber (2π/λ)
         delay_rad = np.deg2rad(delay_deg)  # Convert delay from degrees to radians
 
