@@ -257,7 +257,7 @@ class HeatMapWindow(QMainWindow):
 
         # Array geometry type (Linear or Curved)
         self.array_geometry_combo = QComboBox()
-        self.array_geometry_combo.addItems(["Linear", "Upward Curved", "Downward Curved"])
+        self.array_geometry_combo.addItems(["Linear", "Curved"])
         self.array_geometry_combo.currentTextChanged.connect(
             self.toggle_curvature_slider
         )
@@ -348,23 +348,15 @@ class HeatMapWindow(QMainWindow):
         array_geometry = data["array_geometry"]
         curvature = data["curvature"]
 
-        if file_path == 'scenarios/5g_scenario.json':
-            frequencies = data.get("frequencies", [])
-            for i, frequency in enumerate(frequencies):
+        frequencies = data.get("frequencies", [])
+        for i, frequency in enumerate(frequencies):
                 self.frequency_controls[i].setValue(frequency)
-            self.curvature_slider.setDisabled(True)
 
-        elif file_path == 'scenarios/ultrasound_scenario.json':
-            frequencies = data.get("frequencies", [])
-            for i, frequency in enumerate(frequencies):
-                self.frequency_controls[i].setValue(frequency)
+        if file_path == 'scenarios/tumor_ablation_scenario.json':
             self.curvature_slider.setDisabled(False)
-    
-        elif file_path == 'scenarios/tumor_ablation_scenario.json':
-            frequencies = data.get("frequencies", [])
-            for i, frequency in enumerate(frequencies):
-                self.frequency_controls[i].setValue(frequency)
-            self.curvature_slider.setDisabled(False)
+
+        else: 
+            self.curvature_slider.setDisabled(True)
         
         self.array_geometry_combo.setCurrentText(array_geometry)
         self.curvature_slider.setValue(curvature)
@@ -422,7 +414,7 @@ class HeatMapWindow(QMainWindow):
 
     def toggle_curvature_slider(self, value):
         logging.info(f"Toggling curvature slider: {value}")
-        if value == "Upward Curved" or value == "Downward Curved":
+        if value == "Curved":
             self.curvature_slider.setDisabled(False)
             self.antenna_selector.setDisabled(True)
             self.x_position_slider.setDisabled(True)
@@ -486,15 +478,15 @@ class HeatMapWindow(QMainWindow):
                 num_antennas,
             )
 
-            if array_geometry == "Upward Curved":
+            if array_geometry == "Curved":
                 curvature = self.curvature
                 self.y_positions = 0.01 * np.max(self.Y) + curvature * (
                     self.antenna_positions**2
                 )  # baseline Y-offset for all antennas + quadratic term which creates the parabolic curve
-            elif array_geometry == "Downward Curved":
-                curvature = self.curvature
-                center_x_value = 0.00
-                self.y_positions = 0.01 * np.max(self.Y) + curvature * ((center_x_value - self.antenna_positions)**2)
+            # elif array_geometry == "Downward Curved":
+            #     curvature = self.curvature
+            #     center_x_value = 0.00
+            #     self.y_positions = 0.01 * np.max(self.Y) - curvature * ((center_x_value - self.antenna_positions)**2)
             else:
                 self.y_positions = np.full_like(
                     self.antenna_positions, 0
@@ -533,7 +525,7 @@ class HeatMapWindow(QMainWindow):
         Waves_Sum = np.abs(self.Waves_Sum)  # Take absolute value
         
         # Apply logarithmic scaling
-        Waves_Sum_log = np.log1p(Waves_Sum)  # log1p prevents issues with zero values
+        Waves_Sum_log = np.log1p(Waves_Sum) # log1p(x)=ln(1+x) to avoid zero values issue
         
         # Normalize to [0, 1] range
         Waves_Sum_normalized = (Waves_Sum_log - Waves_Sum_log.min()) / (Waves_Sum_log.max() - Waves_Sum_log.min())
