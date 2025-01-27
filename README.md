@@ -6,11 +6,9 @@
 ![NumPy](https://img.shields.io/badge/NumPy-1.21.2-yellow.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-<video width="600" controls>
-  <source src="assets/Beam-Forming%20Git%20Video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 
+
+https://github.com/user-attachments/assets/570edaaf-1965-4066-98f4-62331379829a
 ![alt text](assets/image.png)
 
 This project is a Beamforming Simulator that visualizes the beamforming process using a heatmap and beam profile. The simulator allows users to configure various parameters such as the number of antennas, distance between antennas, delay between antennas, and array geometry.
