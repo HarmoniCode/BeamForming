@@ -1,101 +1,504 @@
-2025-01-26 06:51:24,276 - INFO - Initializing HeatMapWindow
-2025-01-26 06:51:24,276 - INFO - Setting up UI
-2025-01-26 06:51:24,276 - INFO - Adding labeled row: Select Antenna:
-2025-01-26 06:51:24,459 - INFO - Adding labeled row: X Position:
-2025-01-26 06:51:24,459 - INFO - Adding labeled row: Y Position:
-2025-01-26 06:51:24,459 - INFO - Adding labeled row: Number of Antennas:
-2025-01-26 06:51:24,459 - INFO - Adding labeled row: Distance between antennas: 
-2025-01-26 06:51:24,459 - INFO - Adding labeled row: Delay between antennas (in degrees): 
-2025-01-26 06:51:24,459 - INFO - Adding labeled row: Array Geometry: 
-2025-01-26 06:51:24,459 - INFO - Adding labeled row: Curvature (0 = Flat): 
-2025-01-26 06:51:24,459 - INFO - Generating heatmap and profile
-2025-01-26 06:51:24,459 - INFO - Plotting heatmap
-2025-01-26 06:51:24,621 - INFO - Plotting beam profile
-2025-01-26 06:51:28,152 - INFO - Updating frequency of antenna 1 to 1000000.0 Hz
-2025-01-26 06:51:28,152 - INFO - Updating frequency of antenna 2 to 1000000.0 Hz
-2025-01-26 06:51:28,152 - INFO - Updating frequency of antenna 3 to 1000000.0 Hz
-2025-01-26 06:51:28,152 - INFO - Updating frequency of antenna 4 to 1000000.0 Hz
-2025-01-26 06:51:28,152 - INFO - Updating frequency of antenna 5 to 1000000.0 Hz
-2025-01-26 06:51:28,152 - INFO - Updating frequency of antenna 6 to 1000000.0 Hz
-2025-01-26 06:51:28,152 - INFO - Updating frequency of antenna 7 to 1000000.0 Hz
-2025-01-26 06:51:28,152 - INFO - Updating curvature to 12
-2025-01-26 06:51:28,152 - INFO - Generating heatmap and profile
-2025-01-26 06:51:28,152 - INFO - Plotting heatmap
-2025-01-26 06:51:28,309 - INFO - Plotting beam profile
-2025-01-26 06:51:28,356 - INFO - Generating heatmap and profile
-2025-01-26 06:51:28,356 - INFO - Plotting heatmap
-2025-01-26 06:51:28,497 - INFO - Plotting beam profile
-2025-01-26 06:51:28,560 - INFO - Generating heatmap and profile
-2025-01-26 06:51:28,560 - INFO - Plotting heatmap
-2025-01-26 06:51:28,702 - INFO - Plotting beam profile
-2025-01-26 06:51:28,765 - INFO - Generating heatmap and profile
-2025-01-26 06:51:28,765 - INFO - Plotting heatmap
-2025-01-26 06:51:28,906 - INFO - Plotting beam profile
-2025-01-26 06:51:35,480 - INFO - Updating frequency of antenna 1 to 4500000.0 Hz
-2025-01-26 06:51:35,480 - INFO - Updating frequency of antenna 2 to 4500000.0 Hz
-2025-01-26 06:51:35,480 - INFO - Updating frequency of antenna 3 to 4500000.0 Hz
-2025-01-26 06:51:35,480 - INFO - Updating frequency of antenna 4 to 4500000.0 Hz
-2025-01-26 06:51:35,480 - INFO - Updating frequency of antenna 5 to 4500000.0 Hz
-2025-01-26 06:51:35,480 - INFO - Updating frequency of antenna 6 to 4500000.0 Hz
-2025-01-26 06:51:35,480 - INFO - Updating frequency of antenna 7 to 4500000.0 Hz
-2025-01-26 06:51:35,480 - INFO - Updating frequency of antenna 8 to 4500000.0 Hz
-2025-01-26 06:51:35,480 - INFO - Updating frequency of antenna 9 to 4500000.0 Hz
-2025-01-26 06:51:35,480 - INFO - Updating frequency of antenna 10 to 4500000.0 Hz
-2025-01-26 06:51:35,480 - INFO - Toggling curvature slider: Curved
-2025-01-26 06:51:35,480 - INFO - Resetting antenna positions
-2025-01-26 06:51:35,480 - INFO - Generating heatmap and profile
-2025-01-26 06:51:35,480 - INFO - Plotting heatmap
-2025-01-26 06:51:35,621 - INFO - Plotting beam profile
-2025-01-26 06:51:35,684 - INFO - Updating curvature to 24
-2025-01-26 06:51:35,684 - INFO - Generating heatmap and profile
-2025-01-26 06:51:35,684 - INFO - Plotting heatmap
-2025-01-26 06:51:35,825 - INFO - Plotting beam profile
-2025-01-26 06:51:35,888 - INFO - Generating heatmap and profile
-2025-01-26 06:51:35,888 - INFO - Plotting heatmap
-2025-01-26 06:51:36,077 - INFO - Plotting beam profile
-2025-01-26 06:51:36,139 - INFO - Generating heatmap and profile
-2025-01-26 06:51:36,139 - INFO - Plotting heatmap
-2025-01-26 06:51:36,297 - INFO - Plotting beam profile
-2025-01-26 06:51:36,360 - INFO - Generating heatmap and profile
-2025-01-26 06:51:36,360 - INFO - Plotting heatmap
-2025-01-26 06:51:36,516 - INFO - Plotting beam profile
-2025-01-26 06:51:43,311 - INFO - Updating curvature to 25
-2025-01-26 06:51:43,311 - INFO - Generating heatmap and profile
-2025-01-26 06:51:43,311 - INFO - Plotting heatmap
-2025-01-26 06:51:43,467 - INFO - Plotting beam profile
-2025-01-26 06:51:43,530 - INFO - Updating curvature to 24
-2025-01-26 06:51:43,530 - INFO - Generating heatmap and profile
-2025-01-26 06:51:43,530 - INFO - Plotting heatmap
-2025-01-26 06:51:43,703 - INFO - Plotting beam profile
-2025-01-26 06:51:43,766 - INFO - Updating curvature to 26
-2025-01-26 06:51:43,766 - INFO - Generating heatmap and profile
-2025-01-26 06:51:43,766 - INFO - Plotting heatmap
-2025-01-26 06:51:43,923 - INFO - Plotting beam profile
-2025-01-26 06:51:43,986 - INFO - Updating curvature to 24
-2025-01-26 06:51:43,986 - INFO - Generating heatmap and profile
-2025-01-26 06:51:43,986 - INFO - Plotting heatmap
-2025-01-26 06:51:44,158 - INFO - Plotting beam profile
-2025-01-26 06:51:44,599 - INFO - Updating frequency of antenna 1 to 2500000000.0 Hz
-2025-01-26 06:51:44,599 - INFO - Updating frequency of antenna 2 to 2500000000.0 Hz
-2025-01-26 06:51:44,599 - INFO - Updating frequency of antenna 3 to 2500000000.0 Hz
-2025-01-26 06:51:44,599 - INFO - Updating frequency of antenna 4 to 2500000000.0 Hz
-2025-01-26 06:51:44,599 - INFO - Toggling curvature slider: Linear
-2025-01-26 06:51:44,599 - INFO - Updating curvature to 0
-2025-01-26 06:51:44,599 - INFO - Generating heatmap and profile
-2025-01-26 06:51:44,599 - INFO - Plotting heatmap
-2025-01-26 06:51:44,772 - INFO - Plotting beam profile
-2025-01-26 06:51:44,835 - INFO - Generating heatmap and profile
-2025-01-26 06:51:44,835 - INFO - Plotting heatmap
-2025-01-26 06:51:45,008 - INFO - Plotting beam profile
-2025-01-26 06:51:45,101 - INFO - Generating heatmap and profile
-2025-01-26 06:51:45,101 - INFO - Plotting heatmap
-2025-01-26 06:51:45,227 - INFO - Plotting beam profile
-2025-01-26 06:51:45,290 - INFO - Generating heatmap and profile
-2025-01-26 06:51:45,290 - INFO - Plotting heatmap
-2025-01-26 06:51:45,415 - INFO - Plotting beam profile
-2025-01-26 06:51:45,487 - INFO - Generating heatmap and profile
-2025-01-26 06:51:45,487 - INFO - Plotting heatmap
-2025-01-26 06:51:45,604 - INFO - Plotting beam profile
-2025-01-26 06:51:45,682 - INFO - Generating heatmap and profile
-2025-01-26 06:51:45,682 - INFO - Plotting heatmap
-2025-01-26 06:51:45,809 - INFO - Plotting beam profile
+2025-01-27 11:58:49,138 - INFO - Initializing HeatMapWindow
+2025-01-27 11:58:49,138 - INFO - Setting up UI
+2025-01-27 11:58:49,145 - INFO - Adding labeled row: Select Antenna:
+2025-01-27 11:58:49,305 - INFO - Adding labeled row: X Position:
+2025-01-27 11:58:49,305 - INFO - Adding labeled row: Y Position:
+2025-01-27 11:58:49,306 - INFO - Adding labeled row: Number of Antennas:
+2025-01-27 11:58:49,306 - INFO - Adding labeled row: Distance between antennas: 
+2025-01-27 11:58:49,306 - INFO - Adding labeled row: Delay between antennas (in degrees): 
+2025-01-27 11:58:49,306 - INFO - Adding labeled row: Array Geometry: 
+2025-01-27 11:58:49,308 - INFO - Adding labeled row: Curvature (0 = Flat): 
+2025-01-27 11:58:49,314 - INFO - Generating heatmap and profile
+2025-01-27 11:58:49,314 - INFO - Plotting heatmap
+2025-01-27 11:58:49,496 - INFO - Plotting beam profile
+2025-01-27 11:58:59,546 - INFO - Updating frequency of antenna 1 to 1000000.0 Hz
+2025-01-27 11:58:59,546 - INFO - Updating frequency of antenna 2 to 1000000.0 Hz
+2025-01-27 11:58:59,546 - INFO - Updating frequency of antenna 3 to 1000000.0 Hz
+2025-01-27 11:58:59,546 - INFO - Updating frequency of antenna 4 to 1000000.0 Hz
+2025-01-27 11:58:59,547 - INFO - Updating frequency of antenna 5 to 1000000.0 Hz
+2025-01-27 11:58:59,547 - INFO - Updating frequency of antenna 6 to 1000000.0 Hz
+2025-01-27 11:58:59,547 - INFO - Updating frequency of antenna 7 to 1000000.0 Hz
+2025-01-27 11:58:59,547 - INFO - Generating heatmap and profile
+2025-01-27 11:58:59,547 - INFO - Plotting heatmap
+2025-01-27 11:58:59,690 - INFO - Plotting beam profile
+2025-01-27 11:58:59,756 - INFO - Generating heatmap and profile
+2025-01-27 11:58:59,757 - INFO - Plotting heatmap
+2025-01-27 11:58:59,905 - INFO - Plotting beam profile
+2025-01-27 11:58:59,970 - INFO - Generating heatmap and profile
+2025-01-27 11:58:59,970 - INFO - Plotting heatmap
+2025-01-27 11:59:00,115 - INFO - Plotting beam profile
+2025-01-27 11:59:02,432 - INFO - Generating heatmap and profile
+2025-01-27 11:59:02,432 - INFO - Plotting heatmap
+2025-01-27 11:59:02,581 - INFO - Plotting beam profile
+2025-01-27 11:59:02,651 - INFO - Generating heatmap and profile
+2025-01-27 11:59:02,651 - INFO - Plotting heatmap
+2025-01-27 11:59:02,799 - INFO - Plotting beam profile
+2025-01-27 11:59:02,871 - INFO - Generating heatmap and profile
+2025-01-27 11:59:02,871 - INFO - Plotting heatmap
+2025-01-27 11:59:03,023 - INFO - Plotting beam profile
+2025-01-27 11:59:03,094 - INFO - Generating heatmap and profile
+2025-01-27 11:59:03,094 - INFO - Plotting heatmap
+2025-01-27 11:59:03,279 - INFO - Plotting beam profile
+2025-01-27 11:59:03,350 - INFO - Generating heatmap and profile
+2025-01-27 11:59:03,350 - INFO - Plotting heatmap
+2025-01-27 11:59:03,499 - INFO - Plotting beam profile
+2025-01-27 11:59:03,571 - INFO - Generating heatmap and profile
+2025-01-27 11:59:03,571 - INFO - Plotting heatmap
+2025-01-27 11:59:03,719 - INFO - Plotting beam profile
+2025-01-27 11:59:03,790 - INFO - Generating heatmap and profile
+2025-01-27 11:59:03,790 - INFO - Plotting heatmap
+2025-01-27 11:59:03,935 - INFO - Plotting beam profile
+2025-01-27 11:59:04,012 - INFO - Generating heatmap and profile
+2025-01-27 11:59:04,012 - INFO - Plotting heatmap
+2025-01-27 11:59:04,157 - INFO - Plotting beam profile
+2025-01-27 11:59:04,231 - INFO - Generating heatmap and profile
+2025-01-27 11:59:04,231 - INFO - Plotting heatmap
+2025-01-27 11:59:04,379 - INFO - Plotting beam profile
+2025-01-27 11:59:04,448 - INFO - Generating heatmap and profile
+2025-01-27 11:59:04,448 - INFO - Plotting heatmap
+2025-01-27 11:59:04,593 - INFO - Plotting beam profile
+2025-01-27 11:59:04,664 - INFO - Generating heatmap and profile
+2025-01-27 11:59:04,664 - INFO - Plotting heatmap
+2025-01-27 11:59:04,810 - INFO - Plotting beam profile
+2025-01-27 11:59:05,789 - INFO - Generating heatmap and profile
+2025-01-27 11:59:05,789 - INFO - Plotting heatmap
+2025-01-27 11:59:05,977 - INFO - Plotting beam profile
+2025-01-27 11:59:06,045 - INFO - Generating heatmap and profile
+2025-01-27 11:59:06,045 - INFO - Plotting heatmap
+2025-01-27 11:59:06,194 - INFO - Plotting beam profile
+2025-01-27 11:59:06,266 - INFO - Generating heatmap and profile
+2025-01-27 11:59:06,266 - INFO - Plotting heatmap
+2025-01-27 11:59:06,417 - INFO - Plotting beam profile
+2025-01-27 11:59:06,602 - INFO - Generating heatmap and profile
+2025-01-27 11:59:06,602 - INFO - Plotting heatmap
+2025-01-27 11:59:06,749 - INFO - Plotting beam profile
+2025-01-27 11:59:07,760 - INFO - Updating frequency of antenna 1 to 4500000.0 Hz
+2025-01-27 11:59:07,760 - INFO - Updating frequency of antenna 2 to 4500000.0 Hz
+2025-01-27 11:59:07,760 - INFO - Updating frequency of antenna 3 to 4500000.0 Hz
+2025-01-27 11:59:07,760 - INFO - Updating frequency of antenna 4 to 4500000.0 Hz
+2025-01-27 11:59:07,760 - INFO - Updating frequency of antenna 5 to 4500000.0 Hz
+2025-01-27 11:59:07,761 - INFO - Updating frequency of antenna 6 to 4500000.0 Hz
+2025-01-27 11:59:07,761 - INFO - Updating frequency of antenna 7 to 4500000.0 Hz
+2025-01-27 11:59:07,761 - INFO - Updating frequency of antenna 8 to 4500000.0 Hz
+2025-01-27 11:59:07,761 - INFO - Updating frequency of antenna 9 to 4500000.0 Hz
+2025-01-27 11:59:07,761 - INFO - Updating frequency of antenna 10 to 4500000.0 Hz
+2025-01-27 11:59:07,761 - INFO - Toggling curvature slider: Curved
+2025-01-27 11:59:07,761 - INFO - Resetting antenna positions
+2025-01-27 11:59:07,761 - INFO - Generating heatmap and profile
+2025-01-27 11:59:07,761 - INFO - Plotting heatmap
+2025-01-27 11:59:07,908 - INFO - Plotting beam profile
+2025-01-27 11:59:07,978 - INFO - Updating curvature to 24
+2025-01-27 11:59:07,978 - INFO - Generating heatmap and profile
+2025-01-27 11:59:07,978 - INFO - Plotting heatmap
+2025-01-27 11:59:08,128 - INFO - Plotting beam profile
+2025-01-27 11:59:08,198 - INFO - Generating heatmap and profile
+2025-01-27 11:59:08,198 - INFO - Plotting heatmap
+2025-01-27 11:59:08,369 - INFO - Plotting beam profile
+2025-01-27 11:59:08,434 - INFO - Generating heatmap and profile
+2025-01-27 11:59:08,434 - INFO - Plotting heatmap
+2025-01-27 11:59:08,604 - INFO - Plotting beam profile
+2025-01-27 11:59:08,669 - INFO - Generating heatmap and profile
+2025-01-27 11:59:08,669 - INFO - Plotting heatmap
+2025-01-27 11:59:08,885 - INFO - Plotting beam profile
+2025-01-27 11:59:10,377 - INFO - Generating heatmap and profile
+2025-01-27 11:59:10,378 - INFO - Plotting heatmap
+2025-01-27 11:59:10,544 - INFO - Plotting beam profile
+2025-01-27 11:59:10,608 - INFO - Generating heatmap and profile
+2025-01-27 11:59:10,608 - INFO - Plotting heatmap
+2025-01-27 11:59:10,779 - INFO - Plotting beam profile
+2025-01-27 11:59:10,846 - INFO - Generating heatmap and profile
+2025-01-27 11:59:10,846 - INFO - Plotting heatmap
+2025-01-27 11:59:11,016 - INFO - Plotting beam profile
+2025-01-27 11:59:11,082 - INFO - Generating heatmap and profile
+2025-01-27 11:59:11,082 - INFO - Plotting heatmap
+2025-01-27 11:59:11,255 - INFO - Plotting beam profile
+2025-01-27 11:59:11,326 - INFO - Generating heatmap and profile
+2025-01-27 11:59:11,326 - INFO - Plotting heatmap
+2025-01-27 11:59:11,500 - INFO - Plotting beam profile
+2025-01-27 11:59:11,569 - INFO - Generating heatmap and profile
+2025-01-27 11:59:11,569 - INFO - Plotting heatmap
+2025-01-27 11:59:11,741 - INFO - Plotting beam profile
+2025-01-27 11:59:11,808 - INFO - Generating heatmap and profile
+2025-01-27 11:59:11,809 - INFO - Plotting heatmap
+2025-01-27 11:59:11,982 - INFO - Plotting beam profile
+2025-01-27 11:59:12,049 - INFO - Generating heatmap and profile
+2025-01-27 11:59:12,049 - INFO - Plotting heatmap
+2025-01-27 11:59:12,220 - INFO - Plotting beam profile
+2025-01-27 11:59:12,286 - INFO - Generating heatmap and profile
+2025-01-27 11:59:12,286 - INFO - Plotting heatmap
+2025-01-27 11:59:12,519 - INFO - Plotting beam profile
+2025-01-27 11:59:12,587 - INFO - Generating heatmap and profile
+2025-01-27 11:59:12,587 - INFO - Plotting heatmap
+2025-01-27 11:59:12,763 - INFO - Plotting beam profile
+2025-01-27 11:59:12,830 - INFO - Generating heatmap and profile
+2025-01-27 11:59:12,830 - INFO - Plotting heatmap
+2025-01-27 11:59:12,997 - INFO - Plotting beam profile
+2025-01-27 11:59:13,063 - INFO - Generating heatmap and profile
+2025-01-27 11:59:13,063 - INFO - Plotting heatmap
+2025-01-27 11:59:13,236 - INFO - Plotting beam profile
+2025-01-27 11:59:13,707 - INFO - Generating heatmap and profile
+2025-01-27 11:59:13,707 - INFO - Plotting heatmap
+2025-01-27 11:59:13,877 - INFO - Plotting beam profile
+2025-01-27 11:59:13,941 - INFO - Generating heatmap and profile
+2025-01-27 11:59:13,941 - INFO - Plotting heatmap
+2025-01-27 11:59:14,113 - INFO - Plotting beam profile
+2025-01-27 11:59:14,179 - INFO - Generating heatmap and profile
+2025-01-27 11:59:14,179 - INFO - Plotting heatmap
+2025-01-27 11:59:14,348 - INFO - Plotting beam profile
+2025-01-27 11:59:14,505 - INFO - Generating heatmap and profile
+2025-01-27 11:59:14,505 - INFO - Plotting heatmap
+2025-01-27 11:59:14,677 - INFO - Plotting beam profile
+2025-01-27 11:59:15,614 - INFO - Updating frequency of antenna 1 to 2500000000.0 Hz
+2025-01-27 11:59:15,615 - INFO - Updating frequency of antenna 2 to 2500000000.0 Hz
+2025-01-27 11:59:15,615 - INFO - Updating frequency of antenna 3 to 2500000000.0 Hz
+2025-01-27 11:59:15,615 - INFO - Updating frequency of antenna 4 to 2500000000.0 Hz
+2025-01-27 11:59:15,615 - INFO - Toggling curvature slider: Linear
+2025-01-27 11:59:15,615 - INFO - Updating curvature to 0
+2025-01-27 11:59:15,615 - INFO - Generating heatmap and profile
+2025-01-27 11:59:15,615 - INFO - Plotting heatmap
+2025-01-27 11:59:15,795 - INFO - Plotting beam profile
+2025-01-27 11:59:15,903 - INFO - Generating heatmap and profile
+2025-01-27 11:59:15,903 - INFO - Plotting heatmap
+2025-01-27 11:59:16,083 - INFO - Plotting beam profile
+2025-01-27 11:59:16,145 - INFO - Generating heatmap and profile
+2025-01-27 11:59:16,146 - INFO - Plotting heatmap
+2025-01-27 11:59:16,278 - INFO - Plotting beam profile
+2025-01-27 11:59:16,348 - INFO - Generating heatmap and profile
+2025-01-27 11:59:16,348 - INFO - Plotting heatmap
+2025-01-27 11:59:16,482 - INFO - Plotting beam profile
+2025-01-27 11:59:16,556 - INFO - Generating heatmap and profile
+2025-01-27 11:59:16,556 - INFO - Plotting heatmap
+2025-01-27 11:59:16,690 - INFO - Plotting beam profile
+2025-01-27 11:59:16,759 - INFO - Generating heatmap and profile
+2025-01-27 11:59:16,759 - INFO - Plotting heatmap
+2025-01-27 11:59:16,892 - INFO - Plotting beam profile
+2025-01-27 11:59:18,854 - INFO - Generating heatmap and profile
+2025-01-27 11:59:18,854 - INFO - Plotting heatmap
+2025-01-27 11:59:18,989 - INFO - Plotting beam profile
+2025-01-27 11:59:19,063 - INFO - Generating heatmap and profile
+2025-01-27 11:59:19,063 - INFO - Plotting heatmap
+2025-01-27 11:59:19,199 - INFO - Plotting beam profile
+2025-01-27 11:59:19,274 - INFO - Generating heatmap and profile
+2025-01-27 11:59:19,274 - INFO - Plotting heatmap
+2025-01-27 11:59:19,408 - INFO - Plotting beam profile
+2025-01-27 11:59:19,527 - INFO - Generating heatmap and profile
+2025-01-27 11:59:19,527 - INFO - Plotting heatmap
+2025-01-27 11:59:19,664 - INFO - Plotting beam profile
+2025-01-27 11:59:19,742 - INFO - Generating heatmap and profile
+2025-01-27 11:59:19,742 - INFO - Plotting heatmap
+2025-01-27 11:59:19,876 - INFO - Plotting beam profile
+2025-01-27 11:59:19,949 - INFO - Generating heatmap and profile
+2025-01-27 11:59:19,949 - INFO - Plotting heatmap
+2025-01-27 11:59:20,083 - INFO - Plotting beam profile
+2025-01-27 11:59:20,158 - INFO - Generating heatmap and profile
+2025-01-27 11:59:20,158 - INFO - Plotting heatmap
+2025-01-27 11:59:20,293 - INFO - Plotting beam profile
+2025-01-27 11:59:20,367 - INFO - Generating heatmap and profile
+2025-01-27 11:59:20,367 - INFO - Plotting heatmap
+2025-01-27 11:59:20,501 - INFO - Plotting beam profile
+2025-01-27 11:59:20,575 - INFO - Generating heatmap and profile
+2025-01-27 11:59:20,575 - INFO - Plotting heatmap
+2025-01-27 11:59:20,710 - INFO - Plotting beam profile
+2025-01-27 11:59:20,787 - INFO - Generating heatmap and profile
+2025-01-27 11:59:20,787 - INFO - Plotting heatmap
+2025-01-27 11:59:20,923 - INFO - Plotting beam profile
+2025-01-27 11:59:20,995 - INFO - Generating heatmap and profile
+2025-01-27 11:59:20,995 - INFO - Plotting heatmap
+2025-01-27 11:59:21,129 - INFO - Plotting beam profile
+2025-01-27 11:59:21,245 - INFO - Generating heatmap and profile
+2025-01-27 11:59:21,245 - INFO - Plotting heatmap
+2025-01-27 11:59:21,379 - INFO - Plotting beam profile
+2025-01-27 11:59:21,449 - INFO - Generating heatmap and profile
+2025-01-27 11:59:21,449 - INFO - Plotting heatmap
+2025-01-27 11:59:21,585 - INFO - Plotting beam profile
+2025-01-27 11:59:21,659 - INFO - Generating heatmap and profile
+2025-01-27 11:59:21,659 - INFO - Plotting heatmap
+2025-01-27 11:59:21,795 - INFO - Plotting beam profile
+2025-01-27 11:59:21,865 - INFO - Generating heatmap and profile
+2025-01-27 11:59:21,865 - INFO - Plotting heatmap
+2025-01-27 11:59:21,998 - INFO - Plotting beam profile
+2025-01-27 11:59:22,072 - INFO - Generating heatmap and profile
+2025-01-27 11:59:22,072 - INFO - Plotting heatmap
+2025-01-27 11:59:22,206 - INFO - Plotting beam profile
+2025-01-27 11:59:22,282 - INFO - Generating heatmap and profile
+2025-01-27 11:59:22,282 - INFO - Plotting heatmap
+2025-01-27 11:59:22,427 - INFO - Plotting beam profile
+2025-01-27 11:59:22,497 - INFO - Generating heatmap and profile
+2025-01-27 11:59:22,497 - INFO - Plotting heatmap
+2025-01-27 11:59:22,632 - INFO - Plotting beam profile
+2025-01-27 11:59:22,706 - INFO - Generating heatmap and profile
+2025-01-27 11:59:22,707 - INFO - Plotting heatmap
+2025-01-27 11:59:22,846 - INFO - Plotting beam profile
+2025-01-27 11:59:22,962 - INFO - Generating heatmap and profile
+2025-01-27 11:59:22,962 - INFO - Plotting heatmap
+2025-01-27 11:59:23,095 - INFO - Plotting beam profile
+2025-01-27 11:59:23,167 - INFO - Generating heatmap and profile
+2025-01-27 11:59:23,167 - INFO - Plotting heatmap
+2025-01-27 11:59:23,303 - INFO - Plotting beam profile
+2025-01-27 11:59:23,379 - INFO - Generating heatmap and profile
+2025-01-27 11:59:23,379 - INFO - Plotting heatmap
+2025-01-27 11:59:23,515 - INFO - Plotting beam profile
+2025-01-27 11:59:23,590 - INFO - Generating heatmap and profile
+2025-01-27 11:59:23,590 - INFO - Plotting heatmap
+2025-01-27 11:59:23,727 - INFO - Plotting beam profile
+2025-01-27 11:59:23,796 - INFO - Generating heatmap and profile
+2025-01-27 11:59:23,796 - INFO - Plotting heatmap
+2025-01-27 11:59:23,934 - INFO - Plotting beam profile
+2025-01-27 11:59:24,009 - INFO - Generating heatmap and profile
+2025-01-27 11:59:24,009 - INFO - Plotting heatmap
+2025-01-27 11:59:24,143 - INFO - Plotting beam profile
+2025-01-27 11:59:24,217 - INFO - Generating heatmap and profile
+2025-01-27 11:59:24,217 - INFO - Plotting heatmap
+2025-01-27 11:59:24,352 - INFO - Plotting beam profile
+2025-01-27 11:59:24,426 - INFO - Generating heatmap and profile
+2025-01-27 11:59:24,426 - INFO - Plotting heatmap
+2025-01-27 11:59:24,562 - INFO - Plotting beam profile
+2025-01-27 11:59:24,677 - INFO - Generating heatmap and profile
+2025-01-27 11:59:24,677 - INFO - Plotting heatmap
+2025-01-27 11:59:24,828 - INFO - Plotting beam profile
+2025-01-27 11:59:24,914 - INFO - Generating heatmap and profile
+2025-01-27 11:59:24,914 - INFO - Plotting heatmap
+2025-01-27 11:59:25,048 - INFO - Plotting beam profile
+2025-01-27 11:59:26,506 - INFO - Updating frequency of antenna 1 to 4500000.0 Hz
+2025-01-27 11:59:26,506 - INFO - Updating frequency of antenna 2 to 4500000.0 Hz
+2025-01-27 11:59:26,506 - INFO - Updating frequency of antenna 3 to 4500000.0 Hz
+2025-01-27 11:59:26,506 - INFO - Updating frequency of antenna 4 to 4500000.0 Hz
+2025-01-27 11:59:26,506 - INFO - Toggling curvature slider: Curved
+2025-01-27 11:59:26,506 - INFO - Resetting antenna positions
+2025-01-27 11:59:26,506 - INFO - Generating heatmap and profile
+2025-01-27 11:59:26,507 - INFO - Plotting heatmap
+2025-01-27 11:59:26,627 - INFO - Plotting beam profile
+2025-01-27 11:59:26,696 - INFO - Updating curvature to 24
+2025-01-27 11:59:26,697 - INFO - Generating heatmap and profile
+2025-01-27 11:59:26,697 - INFO - Plotting heatmap
+2025-01-27 11:59:26,818 - INFO - Plotting beam profile
+2025-01-27 11:59:26,887 - INFO - Generating heatmap and profile
+2025-01-27 11:59:26,887 - INFO - Plotting heatmap
+2025-01-27 11:59:27,059 - INFO - Plotting beam profile
+2025-01-27 11:59:27,123 - INFO - Generating heatmap and profile
+2025-01-27 11:59:27,123 - INFO - Plotting heatmap
+2025-01-27 11:59:27,291 - INFO - Plotting beam profile
+2025-01-27 11:59:27,355 - INFO - Generating heatmap and profile
+2025-01-27 11:59:27,355 - INFO - Plotting heatmap
+2025-01-27 11:59:27,523 - INFO - Plotting beam profile
+2025-01-27 11:59:27,584 - INFO - Generating heatmap and profile
+2025-01-27 11:59:27,584 - INFO - Plotting heatmap
+2025-01-27 11:59:27,752 - INFO - Plotting beam profile
+2025-01-27 11:59:33,392 - INFO - Generating heatmap and profile
+2025-01-27 11:59:33,392 - INFO - Plotting heatmap
+2025-01-27 11:59:33,607 - INFO - Plotting beam profile
+2025-01-27 11:59:36,655 - INFO - Generating heatmap and profile
+2025-01-27 11:59:36,655 - INFO - Plotting heatmap
+2025-01-27 11:59:36,822 - INFO - Plotting beam profile
+2025-01-27 11:59:39,220 - INFO - Updating frequency of antenna 1 to 1.0 Hz
+2025-01-27 11:59:39,442 - INFO - Updating frequency of antenna 1 to 10.0 Hz
+2025-01-27 11:59:39,590 - INFO - Updating frequency of antenna 1 to 100.0 Hz
+2025-01-27 11:59:40,649 - INFO - Updating frequency of antenna 2 to 1.0 Hz
+2025-01-27 11:59:40,955 - INFO - Updating frequency of antenna 2 to 15.0 Hz
+2025-01-27 11:59:41,093 - INFO - Updating frequency of antenna 2 to 150.0 Hz
+2025-01-27 11:59:42,265 - INFO - Updating frequency of antenna 3 to 2.0 Hz
+2025-01-27 11:59:42,382 - INFO - Updating frequency of antenna 3 to 20.0 Hz
+2025-01-27 11:59:42,527 - INFO - Updating frequency of antenna 3 to 200.0 Hz
+2025-01-27 11:59:43,542 - INFO - Updating frequency of antenna 4 to 3.0 Hz
+2025-01-27 11:59:43,706 - INFO - Updating frequency of antenna 4 to 30.0 Hz
+2025-01-27 11:59:43,841 - INFO - Updating frequency of antenna 4 to 300.0 Hz
+2025-01-27 11:59:44,379 - INFO - Updating frequency of antenna 5 to 4.0 Hz
+2025-01-27 11:59:44,542 - INFO - Updating frequency of antenna 5 to 40.0 Hz
+2025-01-27 11:59:44,679 - INFO - Updating frequency of antenna 5 to 400.0 Hz
+2025-01-27 11:59:45,348 - INFO - Updating frequency of antenna 6 to 1.0 Hz
+2025-01-27 11:59:45,458 - INFO - Updating frequency of antenna 6 to 10.0 Hz
+2025-01-27 11:59:45,569 - INFO - Updating frequency of antenna 6 to 100.0 Hz
+2025-01-27 11:59:45,986 - INFO - Updating frequency of antenna 7 to 1.0 Hz
+2025-01-27 11:59:46,081 - INFO - Updating frequency of antenna 7 to 10.0 Hz
+2025-01-27 11:59:46,218 - INFO - Updating frequency of antenna 7 to 100.0 Hz
+2025-01-27 11:59:46,347 - INFO - Updating frequency of antenna 7 to 1001.0 Hz
+2025-01-27 11:59:46,849 - INFO - Updating frequency of antenna 7 to 100.0 Hz
+2025-01-27 11:59:47,469 - INFO - Updating frequency of antenna 8 to 1.0 Hz
+2025-01-27 11:59:47,576 - INFO - Updating frequency of antenna 8 to 10.0 Hz
+2025-01-27 11:59:47,682 - INFO - Updating frequency of antenna 8 to 100.0 Hz
+2025-01-27 11:59:48,219 - INFO - Updating frequency of antenna 9 to 1.0 Hz
+2025-01-27 11:59:48,309 - INFO - Updating frequency of antenna 9 to 10.0 Hz
+2025-01-27 11:59:48,436 - INFO - Updating frequency of antenna 9 to 100.0 Hz
+2025-01-27 11:59:48,936 - INFO - Updating frequency of antenna 10 to 1.0 Hz
+2025-01-27 11:59:49,082 - INFO - Updating frequency of antenna 10 to 10.0 Hz
+2025-01-27 11:59:49,208 - INFO - Updating frequency of antenna 10 to 100.0 Hz
+2025-01-27 11:59:50,499 - INFO - Generating heatmap and profile
+2025-01-27 11:59:50,499 - INFO - Plotting heatmap
+2025-01-27 11:59:50,658 - INFO - Plotting beam profile
+2025-01-27 11:59:56,069 - INFO - Generating heatmap and profile
+2025-01-27 11:59:56,069 - INFO - Plotting heatmap
+2025-01-27 11:59:56,233 - INFO - Plotting beam profile
+2025-01-27 11:59:56,306 - INFO - Generating heatmap and profile
+2025-01-27 11:59:56,306 - INFO - Plotting heatmap
+2025-01-27 11:59:56,469 - INFO - Plotting beam profile
+2025-01-27 11:59:56,545 - INFO - Generating heatmap and profile
+2025-01-27 11:59:56,545 - INFO - Plotting heatmap
+2025-01-27 11:59:56,706 - INFO - Plotting beam profile
+2025-01-27 11:59:56,874 - INFO - Generating heatmap and profile
+2025-01-27 11:59:56,874 - INFO - Plotting heatmap
+2025-01-27 11:59:57,036 - INFO - Plotting beam profile
+2025-01-27 11:59:57,114 - INFO - Generating heatmap and profile
+2025-01-27 11:59:57,115 - INFO - Plotting heatmap
+2025-01-27 11:59:57,284 - INFO - Plotting beam profile
+2025-01-27 11:59:57,357 - INFO - Generating heatmap and profile
+2025-01-27 11:59:57,358 - INFO - Plotting heatmap
+2025-01-27 11:59:57,564 - INFO - Plotting beam profile
+2025-01-27 11:59:57,636 - INFO - Generating heatmap and profile
+2025-01-27 11:59:57,636 - INFO - Plotting heatmap
+2025-01-27 11:59:57,797 - INFO - Plotting beam profile
+2025-01-27 11:59:57,870 - INFO - Generating heatmap and profile
+2025-01-27 11:59:57,870 - INFO - Plotting heatmap
+2025-01-27 11:59:58,036 - INFO - Plotting beam profile
+2025-01-27 11:59:58,108 - INFO - Generating heatmap and profile
+2025-01-27 11:59:58,108 - INFO - Plotting heatmap
+2025-01-27 11:59:58,271 - INFO - Plotting beam profile
+2025-01-27 11:59:58,348 - INFO - Generating heatmap and profile
+2025-01-27 11:59:58,349 - INFO - Plotting heatmap
+2025-01-27 11:59:58,511 - INFO - Plotting beam profile
+2025-01-27 12:00:00,489 - INFO - Updating frequency of antenna 2 to 1.0 Hz
+2025-01-27 12:00:00,623 - INFO - Updating frequency of antenna 2 to 10.0 Hz
+2025-01-27 12:00:00,733 - INFO - Updating frequency of antenna 2 to 100.0 Hz
+2025-01-27 12:00:01,055 - INFO - Updating frequency of antenna 3 to 1.0 Hz
+2025-01-27 12:00:01,163 - INFO - Updating frequency of antenna 3 to 10.0 Hz
+2025-01-27 12:00:01,282 - INFO - Updating frequency of antenna 3 to 100.0 Hz
+2025-01-27 12:00:01,663 - INFO - Updating frequency of antenna 4 to 1.0 Hz
+2025-01-27 12:00:01,799 - INFO - Updating frequency of antenna 4 to 10.0 Hz
+2025-01-27 12:00:01,935 - INFO - Updating frequency of antenna 4 to 100.0 Hz
+2025-01-27 12:00:02,302 - INFO - Updating frequency of antenna 5 to 1.0 Hz
+2025-01-27 12:00:02,407 - INFO - Updating frequency of antenna 5 to 10.0 Hz
+2025-01-27 12:00:02,537 - INFO - Updating frequency of antenna 5 to 100.0 Hz
+2025-01-27 12:00:04,072 - INFO - Generating heatmap and profile
+2025-01-27 12:00:04,072 - INFO - Plotting heatmap
+2025-01-27 12:00:04,231 - INFO - Plotting beam profile
+2025-01-27 12:00:07,796 - INFO - Toggling curvature slider: Linear
+2025-01-27 12:00:07,796 - INFO - Updating curvature to 0
+2025-01-27 12:00:07,796 - INFO - Generating heatmap and profile
+2025-01-27 12:00:07,796 - INFO - Plotting heatmap
+2025-01-27 12:00:07,959 - INFO - Plotting beam profile
+2025-01-27 12:00:08,026 - INFO - Generating heatmap and profile
+2025-01-27 12:00:08,026 - INFO - Plotting heatmap
+2025-01-27 12:00:08,192 - INFO - Plotting beam profile
+2025-01-27 12:00:10,483 - INFO - Generating heatmap and profile
+2025-01-27 12:00:10,483 - INFO - Plotting heatmap
+2025-01-27 12:00:10,685 - INFO - Plotting beam profile
+2025-01-27 12:00:13,247 - INFO - Toggling curvature slider: Curved
+2025-01-27 12:00:13,247 - INFO - Resetting antenna positions
+2025-01-27 12:00:13,248 - INFO - Generating heatmap and profile
+2025-01-27 12:00:13,248 - INFO - Plotting heatmap
+2025-01-27 12:00:13,406 - INFO - Plotting beam profile
+2025-01-27 12:00:14,046 - INFO - Updating curvature to 1
+2025-01-27 12:00:14,046 - INFO - Generating heatmap and profile
+2025-01-27 12:00:14,046 - INFO - Plotting heatmap
+2025-01-27 12:00:14,205 - INFO - Plotting beam profile
+2025-01-27 12:00:14,270 - INFO - Updating curvature to 2
+2025-01-27 12:00:14,270 - INFO - Generating heatmap and profile
+2025-01-27 12:00:14,270 - INFO - Plotting heatmap
+2025-01-27 12:00:14,432 - INFO - Plotting beam profile
+2025-01-27 12:00:14,498 - INFO - Updating curvature to 3
+2025-01-27 12:00:14,498 - INFO - Generating heatmap and profile
+2025-01-27 12:00:14,498 - INFO - Plotting heatmap
+2025-01-27 12:00:14,658 - INFO - Plotting beam profile
+2025-01-27 12:00:14,726 - INFO - Updating curvature to 4
+2025-01-27 12:00:14,726 - INFO - Generating heatmap and profile
+2025-01-27 12:00:14,726 - INFO - Plotting heatmap
+2025-01-27 12:00:14,888 - INFO - Plotting beam profile
+2025-01-27 12:00:14,961 - INFO - Updating curvature to 5
+2025-01-27 12:00:14,961 - INFO - Generating heatmap and profile
+2025-01-27 12:00:14,961 - INFO - Plotting heatmap
+2025-01-27 12:00:15,127 - INFO - Plotting beam profile
+2025-01-27 12:00:15,197 - INFO - Updating curvature to 6
+2025-01-27 12:00:15,197 - INFO - Generating heatmap and profile
+2025-01-27 12:00:15,197 - INFO - Plotting heatmap
+2025-01-27 12:00:15,353 - INFO - Plotting beam profile
+2025-01-27 12:00:15,413 - INFO - Updating curvature to 7
+2025-01-27 12:00:15,413 - INFO - Generating heatmap and profile
+2025-01-27 12:00:15,413 - INFO - Plotting heatmap
+2025-01-27 12:00:15,567 - INFO - Plotting beam profile
+2025-01-27 12:00:15,675 - INFO - Updating curvature to 8
+2025-01-27 12:00:15,675 - INFO - Generating heatmap and profile
+2025-01-27 12:00:15,675 - INFO - Plotting heatmap
+2025-01-27 12:00:15,839 - INFO - Plotting beam profile
+2025-01-27 12:00:15,903 - INFO - Updating curvature to 9
+2025-01-27 12:00:15,903 - INFO - Generating heatmap and profile
+2025-01-27 12:00:15,903 - INFO - Plotting heatmap
+2025-01-27 12:00:16,063 - INFO - Plotting beam profile
+2025-01-27 12:00:16,135 - INFO - Updating curvature to 10
+2025-01-27 12:00:16,136 - INFO - Generating heatmap and profile
+2025-01-27 12:00:16,136 - INFO - Plotting heatmap
+2025-01-27 12:00:16,296 - INFO - Plotting beam profile
+2025-01-27 12:00:16,361 - INFO - Updating curvature to 11
+2025-01-27 12:00:16,361 - INFO - Generating heatmap and profile
+2025-01-27 12:00:16,361 - INFO - Plotting heatmap
+2025-01-27 12:00:16,524 - INFO - Plotting beam profile
+2025-01-27 12:00:16,588 - INFO - Updating curvature to 12
+2025-01-27 12:00:16,588 - INFO - Generating heatmap and profile
+2025-01-27 12:00:16,588 - INFO - Plotting heatmap
+2025-01-27 12:00:16,751 - INFO - Plotting beam profile
+2025-01-27 12:00:16,820 - INFO - Updating curvature to 13
+2025-01-27 12:00:16,820 - INFO - Generating heatmap and profile
+2025-01-27 12:00:16,820 - INFO - Plotting heatmap
+2025-01-27 12:00:16,984 - INFO - Plotting beam profile
+2025-01-27 12:00:17,051 - INFO - Updating curvature to 14
+2025-01-27 12:00:17,051 - INFO - Generating heatmap and profile
+2025-01-27 12:00:17,051 - INFO - Plotting heatmap
+2025-01-27 12:00:17,216 - INFO - Plotting beam profile
+2025-01-27 12:00:17,284 - INFO - Updating curvature to 15
+2025-01-27 12:00:17,284 - INFO - Generating heatmap and profile
+2025-01-27 12:00:17,284 - INFO - Plotting heatmap
+2025-01-27 12:00:17,450 - INFO - Plotting beam profile
+2025-01-27 12:00:18,481 - INFO - Updating curvature to 14
+2025-01-27 12:00:18,481 - INFO - Generating heatmap and profile
+2025-01-27 12:00:18,481 - INFO - Plotting heatmap
+2025-01-27 12:00:18,684 - INFO - Plotting beam profile
+2025-01-27 12:00:18,751 - INFO - Updating curvature to 8
+2025-01-27 12:00:18,751 - INFO - Generating heatmap and profile
+2025-01-27 12:00:18,751 - INFO - Plotting heatmap
+2025-01-27 12:00:18,911 - INFO - Plotting beam profile
+2025-01-27 12:00:18,978 - INFO - Updating curvature to 3
+2025-01-27 12:00:18,978 - INFO - Generating heatmap and profile
+2025-01-27 12:00:18,978 - INFO - Plotting heatmap
+2025-01-27 12:00:19,142 - INFO - Plotting beam profile
+2025-01-27 12:00:19,210 - INFO - Updating curvature to 0
+2025-01-27 12:00:19,211 - INFO - Generating heatmap and profile
+2025-01-27 12:00:19,211 - INFO - Plotting heatmap
+2025-01-27 12:00:19,374 - INFO - Plotting beam profile
+2025-01-27 12:00:21,769 - INFO - Toggling curvature slider: Linear
+2025-01-27 12:00:21,769 - INFO - Generating heatmap and profile
+2025-01-27 12:00:21,769 - INFO - Plotting heatmap
+2025-01-27 12:00:21,925 - INFO - Plotting beam profile
+2025-01-27 12:00:24,762 - INFO - Generating heatmap and profile
+2025-01-27 12:00:24,762 - INFO - Plotting heatmap
+2025-01-27 12:00:24,925 - INFO - Plotting beam profile
+2025-01-27 12:00:25,052 - INFO - Generating heatmap and profile
+2025-01-27 12:00:25,052 - INFO - Plotting heatmap
+2025-01-27 12:00:25,213 - INFO - Plotting beam profile
+2025-01-27 12:00:25,966 - INFO - Generating heatmap and profile
+2025-01-27 12:00:25,967 - INFO - Plotting heatmap
+2025-01-27 12:00:26,125 - INFO - Plotting beam profile
+2025-01-27 12:00:26,191 - INFO - Generating heatmap and profile
+2025-01-27 12:00:26,191 - INFO - Plotting heatmap
+2025-01-27 12:00:26,357 - INFO - Plotting beam profile
+2025-01-27 12:00:33,304 - INFO - Updating antenna position
+2025-01-27 12:00:33,305 - INFO - Generating heatmap and profile
+2025-01-27 12:00:33,305 - INFO - Plotting heatmap
+2025-01-27 12:00:33,469 - INFO - Plotting beam profile
+2025-01-27 12:00:34,129 - INFO - Updating antenna position
+2025-01-27 12:00:34,129 - INFO - Generating heatmap and profile
+2025-01-27 12:00:34,129 - INFO - Plotting heatmap
+2025-01-27 12:00:34,291 - INFO - Plotting beam profile
+2025-01-27 12:00:39,960 - INFO - Updating antenna position
+2025-01-27 12:00:39,961 - INFO - Generating heatmap and profile
+2025-01-27 12:00:39,961 - INFO - Plotting heatmap
+2025-01-27 12:00:40,131 - INFO - Plotting beam profile
+2025-01-27 12:00:40,199 - INFO - Updating antenna position
+2025-01-27 12:00:40,200 - INFO - Generating heatmap and profile
+2025-01-27 12:00:40,200 - INFO - Plotting heatmap
+2025-01-27 12:00:40,360 - INFO - Plotting beam profile
+2025-01-27 12:00:46,615 - INFO - Updating antenna position
+2025-01-27 12:00:46,616 - INFO - Generating heatmap and profile
+2025-01-27 12:00:46,616 - INFO - Plotting heatmap
+2025-01-27 12:00:46,782 - INFO - Plotting beam profile
+2025-01-27 12:00:51,387 - INFO - Updating antenna position
+2025-01-27 12:00:51,388 - INFO - Generating heatmap and profile
+2025-01-27 12:00:51,388 - INFO - Plotting heatmap
+2025-01-27 12:00:51,551 - INFO - Plotting beam profile
