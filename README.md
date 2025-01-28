@@ -7,7 +7,8 @@
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 
-<video src="https://github.com/user-attachments/assets/c76ef5bb-a84c-4eb0-b62f-c78e663dd723"></video>
+![image](https://github.com/user-attachments/assets/3810e60e-18d2-4e1a-b578-a2af3645538e)
+
 
 This project is a Beamforming Simulator that visualizes the beamforming process using a heatmap and beam profile. The simulator allows users to configure various parameters such as the number of antennas, distance between antennas, delay between antennas, and array geometry.
 
@@ -28,6 +29,8 @@ This project is a Beamforming Simulator that visualizes the beamforming process 
   - Manually adjust the x and y positions of each antenna.
 - **Predefined Scenarios**: Load predefined scenarios from JSON files for 5G, Tumor Ablation, and Ultrasound applications.
 - **Dynamic Updates**: Real-time updates of the heatmap and beam profile as parameters are adjusted.
+
+<video src="https://github.com/user-attachments/assets/c76ef5bb-a84c-4eb0-b62f-c78e663dd723"></video>
 
 ## Requirements
 
