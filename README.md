@@ -8,7 +8,10 @@
 
 
 
-https://github.com/user-attachments/assets/570edaaf-1965-4066-98f4-62331379829a
+https://github.com/user-attachments/assets/c76ef5bb-a84c-4eb0-b62f-c78e663dd723
+
+
+
 ![alt text](assets/image.png)
 
 This project is a Beamforming Simulator that visualizes the beamforming process using a heatmap and beam profile. The simulator allows users to configure various parameters such as the number of antennas, distance between antennas, delay between antennas, and array geometry.
